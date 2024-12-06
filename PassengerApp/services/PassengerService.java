@@ -1,7 +1,7 @@
-package services;
+package PassengerApp.services;
 
-import entities.Passenger;
-import repositories.PassengerRepository;
+import PassengerApp.entities.Passenger;
+import PassengerApp.repositories.PassengerRepository;
 import java.util.List;
 
 public class PassengerService {

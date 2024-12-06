@@ -1,19 +1,20 @@
-import config.Database;
-import entities.Passenger;
-import entities.FlightRoute;
-import repositories.PassengerRepositoryImpl;
-import repositories.FlightRouteRepositoryImpl;
-import services.PassengerService;
-import services.FlightRouteService;
-import view.PassengerView;
-import view.FlightRouteView;
+package PassengerApp;
 
+import PassengerApp.config.Database;
+import org.springframework.context.annotation.ComponentScan;
+import PassengerApp.repositories.PassengerRepositoryImpl;
+import PassengerApp.repositories.FlightRouteRepositoryImpl;
+import PassengerApp.services.PassengerService;
+import PassengerApp.services.FlightRouteService;
+import PassengerApp.view.PassengerView;
+import PassengerApp.view.FlightRouteView;
+@ComponentScan(basePackages="PassengerApp")
 public class Main {
     public static void main(String[] args) {
         // Initialize the database connection
         Database database = new Database(); // This will automatically connect to the database
 
-        // Initialize repositories and services
+        // Initialize PassengerApp.repositories and PassengerApp.services
         PassengerRepositoryImpl passengerRepository = new PassengerRepositoryImpl();
         PassengerService passengerService = new PassengerService(passengerRepository);
         PassengerView passengerView = new PassengerView(passengerService);
@@ -22,7 +23,7 @@ public class Main {
         FlightRouteService flightRouteService = new FlightRouteService(flightRouteRepository);
         FlightRouteView flightRouteView = new FlightRouteView(flightRouteService);
 
-        // Main loop
+        // PassengerApp.Main loop
         boolean running = true;
         while (running) {
             System.out.println("Menu: ");

@@ -1,8 +1,8 @@
-package view;
+package PassengerApp.view;
 
-import entities.Passenger;
+import PassengerApp.entities.Passenger;
 import org.springframework.stereotype.Component;
-import services.PassengerService;
+import PassengerApp.services.PassengerService;
 import java.util.List;
 import java.util.Scanner;
 @Component

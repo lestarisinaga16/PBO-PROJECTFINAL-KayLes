@@ -1,7 +1,7 @@
-package services;
+package PassengerApp.services;
 
-import entities.FlightRoute;
-import repositories.FlightRouteRepository;
+import PassengerApp.entities.FlightRoute;
+import PassengerApp.repositories.FlightRouteRepository;
 import java.util.List;
 
 public class FlightRouteService {

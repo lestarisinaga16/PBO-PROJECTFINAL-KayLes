@@ -1,12 +1,13 @@
-package repositories;
+package PassengerApp.repositories;
 
-import config.Database;
-import entities.Passenger;
+import PassengerApp.config.Database;
+import PassengerApp.entities.Passenger;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+@Component
 public class PassengerRepositoryDbImpl {
     public void addPassenger(Passenger passenger) {
         // Pastikan koneksi diambil dari kelas Database

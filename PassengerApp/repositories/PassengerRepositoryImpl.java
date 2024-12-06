@@ -1,6 +1,6 @@
-package repositories;
+package PassengerApp.repositories;
 
-import entities.Passenger;
+import PassengerApp.entities.Passenger;
 import java.util.ArrayList;
 import java.util.List;
 

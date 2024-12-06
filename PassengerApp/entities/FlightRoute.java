@@ -1,4 +1,4 @@
-package entities;
+package PassengerApp.entities;
 
 public class FlightRoute {
     private String departureCity;

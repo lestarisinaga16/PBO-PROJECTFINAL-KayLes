@@ -1,6 +1,6 @@
-package repositories;
+package PassengerApp.repositories;
 
-import entities.FlightRoute;
+import PassengerApp.entities.FlightRoute;
 import java.util.ArrayList;
 import java.util.List;
 
