@@ -1,11 +1,18 @@
 package PassengerApp;
 
 import PassengerApp.config.Database;
+import PassengerApp.entities.FlightRoute;
+import PassengerApp.entities.Passenger;
+import PassengerApp.services.FlightRouteService;
+import PassengerApp.services.PassengerService;
+import PassengerApp.view.FlightRouteView;
+import PassengerApp.view.PassengerView;
 import org.springframework.context.annotation.ComponentScan;
 import PassengerApp.repositories.PassengerRepositoryImpl;
 import PassengerApp.repositories.FlightRouteRepositoryImpl;
-import PassengerApp.view.PassengerView;
-import PassengerApp.view.FlightRouteView;
+
+import java.util.List;
+
 @ComponentScan(basePackages="PassengerApp")
 public class Main {
     public static void main(String[] args) {
@@ -14,12 +21,217 @@ public class Main {
 
         // Initialize PassengerApp.repositories and PassengerApp.services
         PassengerRepositoryImpl passengerRepository = new PassengerRepositoryImpl();
-        PassengerService passengerService = new PassengerService(passengerRepository);
-        PassengerView passengerView = new PassengerView(passengerService);
+        PassengerService passengerService = new PassengerService() {
+            @Override
+            public void addPassenger(Passenger passenger) {
+
+            }
+
+            @Override
+            public void editPassenger(int index, Passenger passenger) {
+
+            }
+
+            @Override
+            public List<Passenger> getAllPassengers() {
+                return List.of();
+            }
+
+            @Override
+            public Passenger[] getPassengerList() {
+                return new Passenger[0];
+            }
+
+            @Override
+            public Boolean removePassenger(Integer id) {
+                return null;
+            }
+
+            @Override
+            public Boolean removePassenger(String idCard) {
+                return null;
+            }
+        };
+        PassengerView passengerView = new PassengerView() {
+            @Override
+            public void displayMessage(String message) {
+
+            }
+
+            @Override
+            public void displayAllPassengers(List<Passenger> passengers) {
+
+            }
+
+            @Override
+            public void displayAddPassengerForm() {
+
+            }
+
+            @Override
+            public void displayEditPassengerForm(Passenger passenger) {
+
+            }
+
+            @Override
+            public void displayRemovePassengerForm() {
+
+            }
+
+            @Override
+            public void displayRemovePassengerConfirmation(String idCard) {
+
+            }
+
+            @Override
+            public String getInputName() {
+                return "";
+            }
+
+            @Override
+            public String getInputAge() {
+                return "";
+            }
+
+            @Override
+            public String getInputGender() {
+                return "";
+            }
+
+            @Override
+            public String getInputPassport() {
+                return "";
+            }
+
+            @Override
+            public String getInputIdCard() {
+                return "";
+            }
+
+            @Override
+            public void displayMainMenu() {
+
+            }
+
+            @Override
+            public void addPassenger() {
+
+            }
+
+            @Override
+            public void displayPassengerInfo() {
+
+            }
+
+            @Override
+            public void editPassenger() {
+
+            }
+        };
 
         FlightRouteRepositoryImpl flightRouteRepository = new FlightRouteRepositoryImpl();
-        FlightRouteService flightRouteService = new FlightRouteService(flightRouteRepository);
-        FlightRouteView flightRouteView = new FlightRouteView(flightRouteService);
+        FlightRouteService flightRouteService = new FlightRouteService() {
+            @Override
+            public void addFlightRoute(FlightRoute flightRoute) {
+
+            }
+
+            @Override
+            public void editFlightRoute(String routeId, FlightRoute flightRoute) {
+
+            }
+
+            @Override
+            public void removeFlightRoute(String routeId) {
+
+            }
+
+            @Override
+            public List<FlightRoute> getAllFlightRoutes() {
+                return List.of();
+            }
+
+            @Override
+            public FlightRoute[] getFlightRouteList() {
+                return new FlightRoute[0];
+            }
+        };
+        FlightRouteView flightRouteView = new FlightRouteView() {
+            @Override
+            public void displayMessage(String message) {
+
+            }
+
+            @Override
+            public void displayAllFlightRoutes(List<FlightRoute> flightRoutes) {
+
+            }
+
+            @Override
+            public void displayAddFlightRouteForm() {
+
+            }
+
+            @Override
+            public void displayEditFlightRouteForm(FlightRoute flightRoute) {
+
+            }
+
+            @Override
+            public void displayRemoveFlightRouteForm() {
+
+            }
+
+            @Override
+            public void displayRemoveFlightRouteConfirmation(String routeId) {
+
+            }
+
+            @Override
+            public String getInputRouteId() {
+                return "";
+            }
+
+            @Override
+            public String getInputDeparture() {
+                return "";
+            }
+
+            @Override
+            public String getInputDestination() {
+                return "";
+            }
+
+            @Override
+            public String getInputDepartureTime() {
+                return "";
+            }
+
+            @Override
+            public void displayMainMenu() {
+
+            }
+
+            @Override
+            public void addFlightRoute() {
+
+            }
+
+            @Override
+            public void displayFlightRoutes() {
+
+            }
+
+            @Override
+            public void editFlightRoute() {
+
+            }
+
+            @Override
+            public void removeFlightRoute() {
+
+            }
+        };
 
         // PassengerApp.Main loop
         boolean running = true;

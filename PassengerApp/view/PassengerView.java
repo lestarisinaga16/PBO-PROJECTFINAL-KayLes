@@ -1,71 +1,49 @@
 package PassengerApp.view;
 
 import PassengerApp.entities.Passenger;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.Scanner;
-@Component
-public class PassengerView {
-    private final PassengerService passengerService;
-    private final Scanner scanner;
 
-    public PassengerView(PassengerService passengerService) {
-        this.passengerService = passengerService;
-        this.scanner = new Scanner(System.in);
-    }
+public interface PassengerView {
 
-    public void displayPassengerInfo() {
-        List<Passenger> passengers = passengerService.getAllPassengers();
-        if (passengers.isEmpty()) {
-            System.out.println("Tidak ada data penumpang.");
-        } else {
-            for (int i = 0; i < passengers.size(); i++) {
-                Passenger passenger = passengers.get(i);
-                System.out.println((i + 1) + ". Nama: " + passenger.getName() + ", Umur: " + passenger.getAge() + ", Jenis Kelamin: " + passenger.getGender());
-            }
-        }
-    }
+    // Menampilkan pesan atau informasi ke pengguna
+    void displayMessage(String message);
 
-    public void addPassenger() {
-        System.out.println("Masukkan Nama: ");
-        String name = scanner.nextLine();
-        System.out.println("Masukkan Umur: ");
-        String age = scanner.nextLine();
-        System.out.println("Masukkan Jenis Kelamin: ");
-        String gender = scanner.nextLine();
-        System.out.println("Masukkan Nomor Paspor: ");
-        String passportNumber = scanner.nextLine();
-        System.out.println("Masukkan Nomor KTP: ");
-        String idCardNumber = scanner.nextLine();
+    // Menampilkan daftar penumpang
+    void displayAllPassengers(List<Passenger> passengers);
 
-        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
-        passengerService.addPassenger(passenger);
-    }
+    // Menampilkan tampilan untuk menambah penumpang
+    void displayAddPassengerForm();
 
-    public void editPassenger() {
-        displayPassengerInfo();
-        System.out.println("Pilih nomor penumpang yang akan diedit: ");
-        int index = scanner.nextInt() - 1;
-        scanner.nextLine();  // Consume newline
+    // Menampilkan tampilan untuk mengedit penumpang
+    void displayEditPassengerForm(Passenger passenger);
 
-        if (index < 0 || index >= passengerService.getAllPassengers().size()) {
-            System.out.println("Data tidak valid.");
-            return;
-        }
+    // Menampilkan tampilan untuk menghapus penumpang
+    void displayRemovePassengerForm();
 
-        System.out.println("Masukkan Nama Baru: ");
-        String name = scanner.nextLine();
-        System.out.println("Masukkan Umur Baru: ");
-        String age = scanner.nextLine();
-        System.out.println("Masukkan Jenis Kelamin Baru: ");
-        String gender = scanner.nextLine();
-        System.out.println("Masukkan Nomor Paspor Baru: ");
-        String passportNumber = scanner.nextLine();
-        System.out.println("Masukkan Nomor KTP Baru: ");
-        String idCardNumber = scanner.nextLine();
+    // Menampilkan konfirmasi penghapusan penumpang
+    void displayRemovePassengerConfirmation(String idCard);
 
-        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
-        passengerService.editPassenger(index, passenger);
-    }
+    // Mengambil input nama penumpang
+    String getInputName();
+
+    // Mengambil input usia penumpang
+    String getInputAge();
+
+    // Mengambil input jenis kelamin penumpang
+    String getInputGender();
+
+    // Mengambil input nomor paspor penumpang
+    String getInputPassport();
+
+    // Mengambil input nomor KTP penumpang
+    String getInputIdCard();
+
+    // Menampilkan menu utama atau pilihan-pilihan lain kepada pengguna
+    void displayMainMenu();
+
+    void addPassenger();
+
+    void displayPassengerInfo();
+
+    void editPassenger();
 }

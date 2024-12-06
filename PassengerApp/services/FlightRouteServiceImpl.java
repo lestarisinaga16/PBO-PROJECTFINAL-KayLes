@@ -2,8 +2,10 @@ package PassengerApp.services;
 
 import PassengerApp.entities.FlightRoute;
 import PassengerApp.repositories.FlightRouteRepository;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public class FlightRouteServiceImpl implements FlightRouteService {
     private final FlightRouteRepository repository;
 
