@@ -1,10 +1,11 @@
 package view;
 
 import entities.Passenger;
+import org.springframework.stereotype.Component;
 import services.PassengerService;
 import java.util.List;
 import java.util.Scanner;
-
+@Component
 public class PassengerView {
     private final PassengerService passengerService;
     private final Scanner scanner;
