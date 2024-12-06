@@ -12,16 +12,14 @@ public class PassengerTerminalViewImpl {
     private final PassengerService passengerService;
     private final Scanner scanner;
 
+    // Constructor
     public PassengerTerminalViewImpl(PassengerService passengerService) {
         this.passengerService = passengerService;
         this.scanner = new Scanner(System.in);
     }
 
-    public PassengerTerminalViewImpl(PassengerService passengerService, Scanner scanner) {
-        this.passengerService = passengerService;
-        this.scanner = scanner;
-    }
 
+    // Menampilkan info penumpang
     public void displayPassengerInfo() {
         List<Passenger> passengers = passengerService.getAllPassengers();
         if (passengers.isEmpty()) {
@@ -34,6 +32,7 @@ public class PassengerTerminalViewImpl {
         }
     }
 
+    // Menambahkan penumpang
     public void addPassenger() {
         System.out.println("Masukkan Nama: ");
         String name = scanner.nextLine();
@@ -50,6 +49,7 @@ public class PassengerTerminalViewImpl {
         passengerService.addPassenger(passenger);
     }
 
+    // Mengedit penumpang
     public void editPassenger() {
         displayPassengerInfo();
         System.out.println("Pilih nomor penumpang yang akan diedit: ");
@@ -76,19 +76,16 @@ public class PassengerTerminalViewImpl {
         passengerService.editPassenger(index, passenger);
     }
 
-    // Menambahkan menu utama dalam metode run()
+
+    // Menampilkan menu dan menjalankan aplikasi
     public void run() {
-        while (true) {
+        boolean running = true;
+        while (running) {
             System.out.println("\nMENU:");
-            System.out.println("1. Tambah Data Passenger");
-            System.out.println("2. Tampilkan Daftar Data Passenger");
-            System.out.println("3. Tampilkan Daftar Rute");
-            System.out.println("4. Tambah Rute Penerbangan");
-            System.out.println("5. Edit Rute Penerbangan");
-            System.out.println("6. Hapus Rute Penerbangan");
-            System.out.println("7. Edit Informasi Pemesan");
-            System.out.println("8. Keluar dari Sistem");
-            System.out.println("Sistem ini dirancang oleh Kayla & Lestari");
+            System.out.println("1. Tambah Data Penumpang");
+            System.out.println("2. Tampilkan Daftar Penumpang");
+            System.out.println("3. Edit Data Penumpang");
+            System.out.println("4. Keluar");
 
             System.out.print("Pilih opsi: ");
             String choice = scanner.nextLine();
@@ -101,27 +98,11 @@ public class PassengerTerminalViewImpl {
                     displayPassengerInfo();
                     break;
                 case "3":
-                    System.out.println("Tampilkan Daftar Rute");
-                    // Panggil method untuk menampilkan daftar rute
-                    break;
-                case "4":
-                    System.out.println("Tambah Rute Penerbangan");
-                    // Panggil method untuk menambah rute penerbangan
-                    break;
-                case "5":
-                    System.out.println("Edit Rute Penerbangan");
-                    // Panggil method untuk mengedit rute penerbangan
-                    break;
-                case "6":
-                    System.out.println("Hapus Rute Penerbangan");
-                    // Panggil method untuk menghapus rute penerbangan
-                    break;
-                case "7":
                     editPassenger();
                     break;
-                case "8":
-                    System.out.println("Keluar dari sistem.");
-                    System.exit(0);
+                case "4":
+                    System.out.println("Keluar dari aplikasi.");
+                    running = false;  // Keluar dari loop
                     break;
                 default:
                     System.out.println("Opsi tidak valid, coba lagi.");

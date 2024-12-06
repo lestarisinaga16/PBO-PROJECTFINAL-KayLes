@@ -46,4 +46,6 @@ public interface PassengerView {
     void displayPassengerInfo();
 
     void editPassenger();
+
+    void running();
 }

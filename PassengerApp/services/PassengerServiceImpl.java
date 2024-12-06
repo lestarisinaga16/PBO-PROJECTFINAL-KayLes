@@ -54,25 +54,21 @@ public class PassengerServiceImpl implements PassengerService {
         return passengers.toArray(new Passenger[0]); // Konversi List ke Array
     }
 
-    @Override
-    public Boolean removePassenger(Integer id) {
-        return null;
-    }
+
 
     @Override
-    public Boolean removePassenger(final String idCard) {  // Menggunakan String idCard sebagai parameter
-        if (idCard == null || idCard.isBlank()) {  // Cek ID Card valid
+    public Boolean removePassenger(Integer id) {
+        if (id == null || id < 0) {
             System.out.println("ID tidak valid.");
             return false;
         }
 
         List<Passenger> passengers = passengerRepository.getAllPassengers();
 
-        // Cari penumpang berdasarkan ID Card
+        // Cari penumpang berdasarkan ID
         Passenger passengerToRemove = null;
         for (Passenger passenger : passengers) {
-            // Memanggil getIdCard() pada objek passenger yang ada dalam loop
-            if (passenger.getIdCard().equals(idCard)) {  // Menggunakan idCard (parameter method)
+            if (passenger.getId()) {  // ID dalam bentuk Integer
                 passengerToRemove = passenger;
                 break;
             }
@@ -86,5 +82,10 @@ public class PassengerServiceImpl implements PassengerService {
             System.out.println("Penumpang tidak ditemukan.");
             return false;
         }
+    }
+
+    @Override
+    public Boolean removePassenger(String idCard) {
+        return null;
     }
 }

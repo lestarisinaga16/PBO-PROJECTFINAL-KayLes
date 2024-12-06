@@ -13,6 +13,10 @@ public class Database {
     public Database(String databasekeyles, String root, String s, String localhost, String number) {
     }
 
+    public Database() {
+
+    }
+
     public static Connection getConnection() {
         return connection;
     }

@@ -45,4 +45,6 @@ public interface FlightRouteView {
     void editFlightRoute();
 
     void removeFlightRoute();
+
+    void running();
 }

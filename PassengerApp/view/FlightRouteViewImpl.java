@@ -10,16 +10,19 @@ public class FlightRouteViewImpl {
     private final FlightRouteService flightRouteService;
     private final Scanner scanner;
 
+    // Constructor
     public FlightRouteViewImpl(FlightRouteService flightRouteService) {
         this.flightRouteService = flightRouteService;
         this.scanner = new Scanner(System.in);
     }
 
+    // Constructor dengan scanner untuk testing atau kebutuhan lain
     public FlightRouteViewImpl(FlightRouteService flightRouteService, Scanner scanner) {
         this.flightRouteService = flightRouteService;
         this.scanner = scanner;
     }
 
+    // Menampilkan semua rute penerbangan
     public void displayFlightRoutes() {
         List<FlightRoute> flightRoutes = flightRouteService.getAllFlightRoutes();
         if (flightRoutes.isEmpty()) {
@@ -32,6 +35,7 @@ public class FlightRouteViewImpl {
         }
     }
 
+    // Menambahkan rute penerbangan baru
     public void addFlightRoute() {
         System.out.println("Masukkan ID Rute: ");
         String routeId = scanner.nextLine();
@@ -48,6 +52,7 @@ public class FlightRouteViewImpl {
         flightRouteService.addFlightRoute(flightRoute);
     }
 
+    // Mengedit rute penerbangan yang ada
     public void editFlightRoute() {
         displayFlightRoutes();
         System.out.println("Masukkan ID Rute yang akan diedit: ");
@@ -65,10 +70,48 @@ public class FlightRouteViewImpl {
         flightRouteService.editFlightRoute(routeId, flightRoute);
     }
 
+    // Menghapus rute penerbangan
     public void removeFlightRoute() {
         displayFlightRoutes();
         System.out.println("Masukkan ID Rute yang akan dihapus: ");
         String routeId = scanner.nextLine();
         flightRouteService.removeFlightRoute(routeId);
+    }
+
+    // Menampilkan menu dan menjalankan aplikasi
+    public void run() {
+        boolean running = true;
+        while (running) {
+            System.out.println("\nMENU RUTE PENERBANGAN:");
+            System.out.println("1. Tambah Rute Penerbangan");
+            System.out.println("2. Tampilkan Daftar Rute Penerbangan");
+            System.out.println("3. Edit Rute Penerbangan");
+            System.out.println("4. Hapus Rute Penerbangan");
+            System.out.println("5. Keluar");
+
+            System.out.print("Pilih opsi: ");
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addFlightRoute();
+                    break;
+                case "2":
+                    displayFlightRoutes();
+                    break;
+                case "3":
+                    editFlightRoute();
+                    break;
+                case "4":
+                    removeFlightRoute();
+                    break;
+                case "5":
+                    System.out.println("Keluar dari aplikasi.");
+                    running = false;  // Keluar dari loop
+                    break;
+                default:
+                    System.out.println("Opsi tidak valid, coba lagi.");
+            }
+        }
     }
 }

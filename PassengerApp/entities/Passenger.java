@@ -5,7 +5,7 @@ public class Passenger {
     private String age;
     private String gender;
     private String passport;  // passport_number
-    private String idCard;  // ktp_number
+    private static String idCard;  // ktp_number
 
     // Constructor
     public Passenger(String name, String age, String gender, String passport, String idCard) {
@@ -16,8 +16,8 @@ public class Passenger {
         this.idCard = idCard;
     }
 
-    public static boolean getId(String id) {
-        return id != null && !id.isBlank();
+    public static boolean getId() {
+        return idCard != null && !idCard.isBlank();
     }
 
 
