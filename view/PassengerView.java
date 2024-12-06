@@ -33,14 +33,12 @@ public class PassengerView {
         String age = scanner.nextLine();
         System.out.println("Masukkan Jenis Kelamin: ");
         String gender = scanner.nextLine();
-        System.out.println("Masukkan Tanggal Lahir: ");
-        String birthDate = scanner.nextLine();
         System.out.println("Masukkan Nomor Paspor: ");
         String passportNumber = scanner.nextLine();
         System.out.println("Masukkan Nomor KTP: ");
         String idCardNumber = scanner.nextLine();
 
-        Passenger passenger = new Passenger(name, age, gender, birthDate, passportNumber, idCardNumber);
+        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
         passengerService.addPassenger(passenger);
     }
 
@@ -61,14 +59,12 @@ public class PassengerView {
         String age = scanner.nextLine();
         System.out.println("Masukkan Jenis Kelamin Baru: ");
         String gender = scanner.nextLine();
-        System.out.println("Masukkan Tanggal Lahir Baru: ");
-        String birthDate = scanner.nextLine();
         System.out.println("Masukkan Nomor Paspor Baru: ");
         String passportNumber = scanner.nextLine();
         System.out.println("Masukkan Nomor KTP Baru: ");
         String idCardNumber = scanner.nextLine();
 
-        Passenger passenger = new Passenger(name, age, gender, birthDate, passportNumber, idCardNumber);
+        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
         passengerService.editPassenger(index, passenger);
     }
 }

@@ -1,8 +1,8 @@
+import config.Database;
 import entities.Passenger;
 import entities.FlightRoute;
 import repositories.PassengerRepositoryImpl;
-import repositories.FlightRouteRepository;
-import repositories.FlightRouteRepositoryImpl;  // Assuming you have this class
+import repositories.FlightRouteRepositoryImpl;
 import services.PassengerService;
 import services.FlightRouteService;
 import view.PassengerView;
@@ -10,13 +10,15 @@ import view.FlightRouteView;
 
 public class Main {
     public static void main(String[] args) {
-        // Setup dependency injection for Passenger
+        // Initialize the database connection
+        Database database = new Database(); // This will automatically connect to the database
+
+        // Initialize repositories and services
         PassengerRepositoryImpl passengerRepository = new PassengerRepositoryImpl();
         PassengerService passengerService = new PassengerService(passengerRepository);
         PassengerView passengerView = new PassengerView(passengerService);
 
-        // Setup dependency injection for FlightRoute
-        FlightRouteRepository flightRouteRepository = new FlightRouteRepositoryImpl();  // Use correct FlightRoute repository
+        FlightRouteRepositoryImpl flightRouteRepository = new FlightRouteRepositoryImpl();
         FlightRouteService flightRouteService = new FlightRouteService(flightRouteRepository);
         FlightRouteView flightRouteView = new FlightRouteView(flightRouteService);
 
@@ -64,5 +66,8 @@ public class Main {
                     System.out.println("Opsi tidak valid.");
             }
         }
+
+        // Close the database connection once the program ends
+        database.closeConnection();  // Ensure the connection is closed after the loop ends
     }
 }

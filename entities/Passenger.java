@@ -4,66 +4,57 @@ public class Passenger {
     private String name;
     private String age;
     private String gender;
-    private String birthDate;
-    private String passportNumber;
-    private String idCardNumber;
+    private String passport;  // passport_number
+    private String idCard;  // ktp_number
 
     // Constructor
-    public Passenger(String name, String age, String gender, String birthDate, String passportNumber, String idCardNumber) {
+    public Passenger(String name, String age, String gender, String passport, String idCard) {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.birthDate = birthDate;
-        this.passportNumber = passportNumber;
-        this.idCardNumber = idCardNumber;
+        this.passport = passport;
+        this.idCard = idCard;
     }
 
-    // Getters and Setters
+    // Getters
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getAge() {
         return age;
     }
 
-    public void setAge(String age) {
-        this.age = age;
-    }
-
     public String getGender() {
         return gender;
+    }
+
+    public String getPassport() {
+        return passport;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public void setPassport(String passport) {
+        this.passport = passport;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getPassportNumber() {
-        return passportNumber;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public String getIdCardNumber() {
-        return idCardNumber;
-    }
-
-    public void setIdCardNumber(String idCardNumber) {
-        this.idCardNumber = idCardNumber;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 }
