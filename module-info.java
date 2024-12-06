@@ -9,5 +9,5 @@ module PBO.PROJECTFINAL.KayLes16 {
     opens PassengerApp.entites;
     opens PassengerApp.repository;
     opens PassengerApp.servise;
-    opens PassengerAPP.view;
+    opens PassengerApp.view;
 }

@@ -24,10 +24,10 @@ public class Main {
 
     // Mendeklarasikan bean Database
     @Bean
-    public Database database() {
+    Database database() {
         // Menyiapkan database dengan parameter yang sesuai
         Database database = new Database("databasekeyles", "root", "", "localhost", "3306");
-        database.setup();  // Pastikan setup() sesuai dengan implementasi Anda
+        database.setup();  // Pastikan setup() sensual dengan implementasi Anda
         return database;
     }
 }
