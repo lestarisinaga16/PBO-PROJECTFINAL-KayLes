@@ -1,7 +1,7 @@
 package PassengerApp.view;
 
 import PassengerApp.entities.FlightRoute;
-import PassengerApp.services.FlightRouteService;
+
 import java.util.List;
 import java.util.Scanner;
 

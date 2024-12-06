@@ -4,8 +4,6 @@ import PassengerApp.config.Database;
 import org.springframework.context.annotation.ComponentScan;
 import PassengerApp.repositories.PassengerRepositoryImpl;
 import PassengerApp.repositories.FlightRouteRepositoryImpl;
-import PassengerApp.services.PassengerService;
-import PassengerApp.services.FlightRouteService;
 import PassengerApp.view.PassengerView;
 import PassengerApp.view.FlightRouteView;
 @ComponentScan(basePackages="PassengerApp")

@@ -2,7 +2,7 @@ package PassengerApp.view;
 
 import PassengerApp.entities.Passenger;
 import org.springframework.stereotype.Component;
-import PassengerApp.services.PassengerService;
+
 import java.util.List;
 import java.util.Scanner;
 @Component

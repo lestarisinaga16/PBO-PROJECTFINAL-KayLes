@@ -16,6 +16,11 @@ public class Passenger {
         this.idCard = idCard;
     }
 
+    public static boolean getId(String id) {
+        return id != null && !id.isBlank();
+    }
+
+
     // Getters
     public String getName() {
         return name;
@@ -33,8 +38,8 @@ public class Passenger {
         return passport;
     }
 
-    public String getIdCard() {
-        return idCard;
+    public static String getIdCard() {
+        return getIdCard();
     }
 
     // Setters
@@ -57,4 +62,5 @@ public class Passenger {
     public void setIdCard(String idCard) {
         this.idCard = idCard;
     }
+    
 }

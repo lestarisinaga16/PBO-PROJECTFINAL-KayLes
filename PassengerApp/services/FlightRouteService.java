@@ -1,29 +1,16 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.FlightRoute;
-import PassengerApp.repositories.FlightRouteRepository;
 import java.util.List;
 
-public class FlightRouteService {
-    private final FlightRouteRepository repository;
+public interface FlightRouteService {
+    void addFlightRoute(FlightRoute flightRoute);
 
-    public FlightRouteService(FlightRouteRepository repository) {
-        this.repository = repository;
-    }
+    void editFlightRoute(String routeId, FlightRoute flightRoute);
 
-    public void addFlightRoute(FlightRoute flightRoute) {
-        repository.addFlightRoute(flightRoute);
-    }
+    void removeFlightRoute(String routeId);
 
-    public void editFlightRoute(String routeId, FlightRoute flightRoute) {
-        repository.editFlightRoute(routeId, flightRoute);
-    }
+    List<FlightRoute> getAllFlightRoutes();
 
-    public void removeFlightRoute(String routeId) {
-        repository.removeFlightRoute(routeId);
-    }
-
-    public List<FlightRoute> getAllFlightRoutes() {
-        return repository.getAllFlightRoutes();
-    }
+    FlightRoute[] getFlightRouteList();
 }
