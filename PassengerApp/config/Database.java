@@ -10,6 +10,9 @@ public class Database {
     private static final String PASSWORD = "";  // Biasanya kosong di XAMPP
     private static Connection connection;
 
+    public Database(String databasekeyles, String root, String s, String localhost, String number) {
+    }
+
     public static Connection getConnection() {
         return connection;
     }
