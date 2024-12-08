@@ -496,7 +496,7 @@ public class MainApp {
                                     String gender = scanner.nextLine();
                                     System.out.print("ID Card: ");
                                     String idCard = scanner.nextLine();
-                                    passengerService.addPassenger(new Passenger(name, age, gender, idCard));
+                                    passengerService.addPassenger(new Passenger(name, age, gender, "", idCard));
                                     break;
 
                                 case 2: // Tampilkan Daftar Passenger

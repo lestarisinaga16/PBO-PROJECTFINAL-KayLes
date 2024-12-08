@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Passenger {
     private String name;
-    private String age;
+    private int age;
     private String gender;
     private String passport;
     private String idCard;
