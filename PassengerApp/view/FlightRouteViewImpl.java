@@ -16,12 +16,6 @@ public class FlightRouteViewImpl {
         this.scanner = new Scanner(System.in);
     }
 
-    // Constructor dengan scanner untuk testing atau kebutuhan lain
-    public FlightRouteViewImpl(FlightRouteService flightRouteService, Scanner scanner) {
-        this.flightRouteService = flightRouteService;
-        this.scanner = scanner;
-    }
-
     // Menampilkan semua rute penerbangan
     public void displayFlightRoutes() {
         List<FlightRoute> flightRoutes = flightRouteService.getAllFlightRoutes();
@@ -48,8 +42,8 @@ public class FlightRouteViewImpl {
         System.out.println("Masukkan Waktu Kedatangan: ");
         String arrivalTime = scanner.nextLine();
 
-        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime);
-        System.out.println("Rute perbangan baru akan di tambahkan: " + flightRoute.getRouteId());
+        FlightRoute flightRoute = new FlightRoute(routeId, departureCity, arrivalCity, departureTime);
+        System.out.println("Rute perbangan baru akan ditambahkan: " + flightRoute.getRouteId());
         flightRouteService.addFlightRoute(flightRoute);
     }
 
@@ -67,7 +61,7 @@ public class FlightRouteViewImpl {
         System.out.println("Masukkan Waktu Kedatangan Baru: ");
         String arrivalTime = scanner.nextLine();
 
-        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime);
+        FlightRoute flightRoute = new FlightRoute(routeId, departureCity, arrivalCity, departureTime);
         flightRouteService.editFlightRoute(routeId, flightRoute);
     }
 
@@ -78,64 +72,4 @@ public class FlightRouteViewImpl {
         String routeId = scanner.nextLine();
         flightRouteService.removeFlightRoute(routeId);
     }
-
-    // Menampilkan menu dan menjalankan aplikasi
-    public void run() {
-        boolean running = true;
-        while (running) {
-            System.out.println("\nMENU RUTE PENERBANGAN:");
-            System.out.println("1. Tambah Data Passenger");
-            System.out.println("2. Tampilkan Daftar Passenger");
-            System.out.println("3. Edit Passenger");
-            System.out.println("4. Tambah Rute Penerbangan");
-            System.out.println("5. Tampilkan Daftar Rute Penerbangan");
-            System.out.println("6. Edit Rute Penerbangan");
-            System.out.println("7. Hapus Rute Penerbangan");
-            System.out.println("8. Keluar");
-
-            System.out.print("Pilih opsi: ");
-            String choice = scanner.nextLine();
-
-            switch (choice) {
-                case "1":
-                    addPassenger();  // Menambahkan data passenger
-                    break;
-                case "2":
-                    displayPassengerInfo();  // Menampilkan daftar passenger
-                    break;
-                case "3":
-                    editPassenger();  // Mengedit data passenger
-                    break;
-                case "4":
-                    addFlightRoute();  // Menambahkan rute penerbangan
-                    break;
-                case "5":
-                    displayFlightRoutes();  // Menampilkan daftar rute penerbangan
-                    break;
-                case "6":
-                    editFlightRoute();  // Mengedit rute penerbangan
-                    break;
-                case "7":
-                    removeFlightRoute();  // Menghapus rute penerbangan
-                    break;
-                case "8":
-                    System.out.println("Keluar dari aplikasi.");  // Keluar dari aplikasi
-                    running = false;  // Menghentikan loop dan keluar dari aplikasi
-                    break;
-                default:
-                    System.out.println("Opsi tidak valid, coba lagi.");  // Menangani input yang tidak valid
-            }
-
-        }
-    }
-
-    private void addPassenger() {
-    }
-
-    private void displayPassengerInfo() {
-    }
-
-    private void editPassenger() {
-    }
-
 }

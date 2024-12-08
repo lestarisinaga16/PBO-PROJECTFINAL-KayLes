@@ -1,7 +1,9 @@
 package PassengerApp.view;
 
 import PassengerApp.entities.Passenger;
+import PassengerApp.entities.FlightRoute;
 import PassengerApp.services.PassengerService;
+import PassengerApp.services.FlightRouteService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,14 +12,15 @@ import java.util.Scanner;
 @Component
 public class PassengerTerminalViewImpl {
     private final PassengerService passengerService;
+    private final FlightRouteService flightRouteService;
     private final Scanner scanner;
 
     // Constructor
-    public PassengerTerminalViewImpl(PassengerService passengerService) {
+    public PassengerTerminalViewImpl(PassengerService passengerService, FlightRouteService flightRouteService) {
         this.passengerService = passengerService;
+        this.flightRouteService = flightRouteService;
         this.scanner = new Scanner(System.in);
     }
-
 
     // Menampilkan info penumpang
     public void displayPassengerInfo() {
@@ -34,50 +37,41 @@ public class PassengerTerminalViewImpl {
 
     // Menambahkan penumpang
     public void addPassenger() {
-        System.out.println("Masukkan Nama: ");
-        String name = scanner.nextLine();
-        System.out.println("Masukkan Umur: ");
-        String age = scanner.nextLine();
-        System.out.println("Masukkan Jenis Kelamin: ");
-        String gender = scanner.nextLine();
-        System.out.println("Masukkan Nomor Paspor: ");
-        String passportNumber = scanner.nextLine();
-        System.out.println("Masukkan Nomor KTP: ");
-        String idCardNumber = scanner.nextLine();
-
-        int umur = 0;
-        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
-        System.out.println("Penumpang baru akan ditambahkan: " + passenger.getName());
-        passengerService.addPassenger(passenger);
+        // Implementasi code untuk menambahkan penumpang
     }
 
     // Mengedit penumpang
     public void editPassenger() {
-        displayPassengerInfo();
-        System.out.println("Pilih nomor penumpang yang akan diedit: ");
-        int index = scanner.nextInt() - 1;
-        scanner.nextLine();  // Consume newline
-
-        if (index < 0 || index >= passengerService.getAllPassengers().size()) {
-            System.out.println("Data tidak valid.");
-            return;
-        }
-
-        System.out.println("Masukkan Nama Baru: ");
-        String name = scanner.nextLine();
-        System.out.println("Masukkan Umur Baru: ");
-        String age = scanner.nextLine();
-        System.out.println("Masukkan Jenis Kelamin Baru: ");
-        String gender = scanner.nextLine();
-        System.out.println("Masukkan Nomor Paspor Baru: ");
-        String passportNumber = scanner.nextLine();
-        System.out.println("Masukkan Nomor KTP Baru: ");
-        String idCardNumber = scanner.nextLine();
-
-        Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
-        passengerService.editPassenger(index, passenger);
+        // Implementasi code untuk mengedit penumpang
     }
 
+    // Menampilkan daftar rute penerbangan
+    public void displayFlightRoutes() {
+        List<FlightRoute> flightRoutes = flightRouteService.getAllFlightRoutes();
+        if (flightRoutes.isEmpty()) {
+            System.out.println("Tidak ada rute penerbangan.");
+        } else {
+            for (int i = 0; i < flightRoutes.size(); i++) {
+                FlightRoute route = flightRoutes.get(i);
+                System.out.println((i + 1) + ". Rute ID: " + route.getRouteId() + ", Kota Keberangkatan: " + route.getDepartureCity() + ", Kota Tujuan: " + route.getArrivalCity());
+            }
+        }
+    }
+
+    // Menambahkan rute penerbangan
+    public void addFlightRoute() {
+        // Implementasi code untuk menambahkan rute penerbangan
+    }
+
+    // Mengedit rute penerbangan
+    public void editFlightRoute() {
+        // Implementasi code untuk mengedit rute penerbangan
+    }
+
+    // Menghapus rute penerbangan
+    public void removeFlightRoute() {
+        // Implementasi code untuk menghapus rute penerbangan
+    }
 
     // Menampilkan menu dan menjalankan aplikasi
     public void run() {
@@ -97,45 +91,33 @@ public class PassengerTerminalViewImpl {
 
             switch (choice) {
                 case "1":
-                    addPassenger();  // Menambahkan passenger
+                    addPassenger();
                     break;
                 case "2":
-                    displayPassengerInfo();  // Menampilkan daftar passenger
+                    displayPassengerInfo();
                     break;
                 case "3":
-                    editPassenger();  // Mengedit data passenger
+                    editPassenger();
                     break;
                 case "4":
-                    addRoutePassenger();  // Menambahkan rute penerbangan
+                    addFlightRoute();
                     break;
                 case "5":
-                    displayFlightRoutes();  // Menampilkan daftar rute penerbangan
+                    displayFlightRoutes();
                     break;
                 case "6":
-                    editFlightRoute();  // Mengedit rute penerbangan
+                    editFlightRoute();
                     break;
                 case "7":
-                    removeFlightRoute();  // Menghapus rute penerbangan
+                    removeFlightRoute();
                     break;
                 case "8":
                     System.out.println("Keluar dari aplikasi.");
-                    running = false;  // Keluar dari loop
+                    running = false;
                     break;
                 default:
                     System.out.println("Opsi tidak valid, coba lagi.");
             }
         }
-    }
-
-    private void addRoutePassenger() {
-    }
-
-    private void displayFlightRoutes() {
-    }
-
-    private void editFlightRoute() {
-    }
-
-    private void removeFlightRoute() {
     }
 }

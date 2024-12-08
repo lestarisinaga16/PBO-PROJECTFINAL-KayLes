@@ -141,6 +141,7 @@ public class MainApp {
                 };
 
                 // Misalnya menambah rute penerbangan melalui menu
+                String arrivalTime = "";
                 flightRouteService.addFlightRoute(new FlightRoute("1", "Medan", "Jakarta", "10:00"));
                 flightRouteService.addFlightRoute(new FlightRoute("2", "Manado", "Jakarta", "14:00"));
 
@@ -603,18 +604,16 @@ public class MainApp {
                 // Membuat objek FlightRoute baru dengan data yang dimasukkan
 
                 // Menambahkan rute ke dalam sistem
-                List<FlightRoute> route = flightRouteService.getAllFlightRoutes();
-                System.out.println("Jumlah rute yang tersedia: " + route.size());
 
                 case 5: // Tampilkan Daftar Rute Penerbangan
                     System.out.println("\n=== Daftar Rute Penerbangan ===");
 
-                    List<FlightRoute> routes = flightRouteService.getAllFlightRoutes();
+                    List<FlightRoute> routesToDisplay = flightRouteService.getAllFlightRoutes(); // Ambil semua rute penerbangan
 
-                    if (route.isEmpty()) {
+                    if (routesToDisplay.isEmpty()) {
                         System.out.println("Belum ada rute penerbangan.");
                     } else {
-                        flightRouteView.displayAllFlightRoutes(route);
+                        flightRouteView.displayAllFlightRoutes(routesToDisplay); // Tampilkan daftar rute penerbangan
                     }
                     break;
 
