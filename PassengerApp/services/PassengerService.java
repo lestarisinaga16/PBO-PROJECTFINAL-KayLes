@@ -12,12 +12,12 @@ public interface PassengerService {
 
     Passenger[] getPassengerList();
 
-    Boolean removePassenger(Integer id);
+    int removePassenger(Integer id);
 
     Boolean removePassenger(String idCard);
 
     // Menambahkan metode untuk mengakses penumpang berdasarkan indeks
-    Passenger get(int index);
+    int get(int index);
 
     // Menambahkan metode untuk mendapatkan jumlah penumpang
     int size();

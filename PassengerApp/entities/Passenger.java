@@ -10,7 +10,7 @@ public class Passenger {
     private String idCard;
 
     // Constructor
-    public Passenger(String name, String age, String gender, String passport, String idCard) {
+    public Passenger(String name, int age, String gender, String passport, String idCard) {
         this.name = name;
         this.age = age;
         this.gender = gender;

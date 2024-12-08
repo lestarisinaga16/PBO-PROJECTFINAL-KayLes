@@ -1,7 +1,7 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.Passenger;
-import PassengerApp.services.PassengerService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +33,9 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Boolean removePassenger(Integer id) {
+    public int removePassenger(Integer id) {
         // Tidak ada id dalam class Passenger, kita menggunakan idCard
-        return passengers.removeIf(passenger -> passenger.getIdCard().equals(id.toString()));
+        return 0;
     }
 
     @Override
@@ -44,11 +44,11 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public Passenger get(int index) {
+    public int get(int index) {
         if (index >= 0 && index < passengers.size()) {
-            return passengers.get(index); // Mengambil penumpang berdasarkan indeks
+            return 0;
         }
-        return null; // Jika indeks tidak valid
+        return 0; // Jika indeks tidak valid
     }
 
     @Override

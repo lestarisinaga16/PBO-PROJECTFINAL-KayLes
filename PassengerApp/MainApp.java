@@ -182,8 +182,8 @@ public class MainApp {
             }
 
             @Override
-            public Boolean removePassenger(Integer id) {
-                return null;
+            public int removePassenger(Integer id) {
+                return 0;
             }
 
             @Override
@@ -192,8 +192,8 @@ public class MainApp {
             }
 
             @Override
-            public Passenger get(int index) {
-                return null;
+            public int get(int index) {
+                return 0;
             }
 
             @Override
@@ -471,235 +471,104 @@ public class MainApp {
             }
 
             switch (option) {
-                case 1: // Tambah Data Passenger
-                    System.out.println("\n=== Tambah Data Passenger ===");
+                while (running) {
+                    passengerView.displayMainMenu(); // Menampilkan menu utama
+                    System.out.print("Pilih opsi: ");
+                    int option = 0;
 
-                    // Meminta input data penumpang
-                    System.out.print("Masukkan Nama: ");
-                    String nama = scanner.nextLine();
-
-                    System.out.print("Masukkan Umur: ");
-                    int umur = Integer.parseInt(scanner.nextLine());
-
-                    System.out.print("Masukkan Jenis Kelamin (L/P): ");
-                    String gender = scanner.nextLine();
-
-                    System.out.print("Masukkan Tanggal Lahir (format: DD-MM-YYYY): ");
-                    String tanggalLahir = scanner.nextLine();
-
-                    System.out.print("Masukkan Nomor Paspor (7 digit): ");
-                    String noPaspor = scanner.nextLine();
-
-                    System.out.print("Masukkan Nomor KTP: ");
-                    String noKTP = scanner.nextLine();
-
-                    // Membuat objek penumpang baru dengan data yang dimasukkan
-                    Passenger newPassenger = new Passenger(nama, gender, tanggalLahir, noPaspor, noKTP);
-
-                    // Menambahkan data penumpang ke layanan
-                    passengerService.addPassenger(newPassenger);
-
-                    System.out.println("Data Passenger berhasil ditambahkan!");
-                    break;
-
-
-                case 2: // Tampilkan Daftar Data Passenger
-                    System.out.println("\n=== Daftar Data Passenger ===");
-                    List<Passenger> passengers = passengerService.getAllPassengers();
-                    if (passengers.isEmpty()) {
-                        System.out.println("Belum ada data penumpang.");
-                    } else {
-                        passengerView.displayAllPassengers(passengers);
+                    try {
+                        option = Integer.parseInt(scanner.nextLine()); // Menghindari kesalahan input
+                    } catch (NumberFormatException e) {
+                        System.out.println("Harap masukkan angka yang valid!");
+                        continue;
                     }
-                    break;
 
-                case 3: // Edit Data Passenger
-                    System.out.println("\n=== Edit Data Passenger ===");
+                    switch (option) {
+                        switch (option) {
+                            switch (option) {
+                                case 1: // Tambah Data Passenger
+                                    System.out.println("\n=== Tambah Data Passenger ===");
+                                    System.out.print("Nama: ");
+                                    String name = scanner.nextLine();
+                                    System.out.print("Umur: ");
+                                    int age = Integer.parseInt(scanner.nextLine());
+                                    System.out.print("Jenis Kelamin: ");
+                                    String gender = scanner.nextLine();
+                                    System.out.print("ID Card: ");
+                                    String idCard = scanner.nextLine();
+                                    passengerService.addPassenger(new Passenger(name, age, gender, idCard));
+                                    break;
 
-                    // Menampilkan daftar data penumpang
-                    List<Passenger> Passengers = passengerService.getAllPassengers();
-                    if (Passengers.isEmpty()) {
-                        System.out.println("Belum ada data penumpang.");
-                    } else {
-                        passengerView.displayAllPassengers(Passengers);
+                                case 2: // Tampilkan Daftar Passenger
+                                    System.out.println("\n=== Daftar Data Passenger ===");
+                                    passengerView.displayAllPassengers(passengerService.getAllPassengers());
+                                    break;
 
-                        // Meminta ID KTP untuk memilih penumpang yang akan diedit
-                        System.out.print("Masukkan Nomor KTP penumpang yang ingin diedit: ");
-                        String editKTP = scanner.nextLine();
+                                case 3: // Edit Passenger
+                                    System.out.println("\n=== Edit Data Passenger ===");
+                                    passengerView.displayAllPassengers(passengerService.getAllPassengers());
+                                    System.out.print("Masukkan indeks passenger yang ingin diubah: ");
+                                    int index = Integer.parseInt(scanner.nextLine());
+                                    System.out.print("Nama Baru: ");
+                                    String newName = scanner.nextLine();
+                                    System.out.print("Umur Baru: ");
+                                    int newAge = Integer.parseInt(scanner.nextLine());
+                                    System.out.print("Jenis Kelamin Baru: ");
+                                    String newGender = scanner.nextLine();
+                                    System.out.print("ID Card Baru: ");
+                                    String newIdCard = scanner.nextLine();
+                                    passengerService.editPassenger(index, new Passenger(newName, newAge, newGender, newIdCard));
+                                    break;
 
-                        // Mencari penumpang berdasarkan nomor KTP
-                        Passenger passengerToEdit = Passengers.stream()
-                                .filter(p -> p.getIdCard().equals(editKTP))
-                                .findFirst()
-                                .orElse(null);
+                                case 4: // Tambah Rute Penerbangan
+                                    System.out.println("\n=== Tambah Rute Penerbangan ===");
+                                    System.out.print("ID Rute: ");
+                                    String routeId = scanner.nextLine();
+                                    System.out.print("Keberangkatan: ");
+                                    String departure = scanner.nextLine();
+                                    System.out.print("Tujuan: ");
+                                    String destination = scanner.nextLine();
+                                    System.out.print("Waktu Keberangkatan: ");
+                                    String departureTime = scanner.nextLine();
+                                    flightRouteService.addFlightRoute(new FlightRoute(routeId, departure, destination, departureTime));
+                                    break;
 
-                        if (passengerToEdit != null) {
-                            // Menampilkan data saat ini dan meminta input untuk pembaruan
-                            System.out.println("Data saat ini:");
-                            System.out.println(passengerToEdit);
+                                case 5: // Tampilkan Daftar Rute Penerbangan
+                                    System.out.println("\n=== Daftar Rute Penerbangan ===");
+                                    flightRouteView.displayFlightRoutes();
+                                    break;
 
-                            System.out.println("Masukkan data baru (kosongkan jika tidak ingin mengubah):");
-                            System.out.print("Nama baru: ");
-                            String newName = scanner.nextLine();
-                            System.out.print("Umur baru: ");
-                            String newAgeInput = scanner.nextLine();
-                            System.out.print("Jenis Kelamin baru (L/P): ");
-                            String newGender = scanner.nextLine();
-                            System.out.print("Tanggal Lahir baru (format: DD-MM-YYYY): ");
-                            String newBirthDate = scanner.nextLine();
-                            System.out.print("Nomor Paspor baru (7 digit): ");
-                            String newPassport = scanner.nextLine();
+                                case 6: // Edit Rute Penerbangan
+                                    System.out.println("\n=== Edit Rute Penerbangan ===");
+                                    System.out.print("Masukkan ID Rute yang ingin diubah: ");
+                                    String editRouteId = scanner.nextLine();
+                                    System.out.print("Keberangkatan Baru: ");
+                                    String newDeparture = scanner.nextLine();
+                                    System.out.print("Tujuan Baru: ");
+                                    String newDestination = scanner.nextLine();
+                                    System.out.print("Waktu Keberangkatan Baru: ");
+                                    String newDepartureTime = scanner.nextLine();
+                                    flightRouteService.editFlightRoute(editRouteId, new FlightRoute(editRouteId, newDeparture, newDestination, newDepartureTime));
+                                    break;
 
-                            // Memperbarui data penumpang
-                            if (!newName.isEmpty()) passengerToEdit.setName(newName);
-                            if (!newAgeInput.isEmpty())
-                                passengerToEdit.setAge(String.valueOf(Integer.parseInt(newAgeInput)));
-                            if (!newGender.isEmpty()) passengerToEdit.setGender(newGender);
-                            if (!newBirthDate.isEmpty()) passengerToEdit.setBirthDate(newBirthDate);
-                            if (!newPassport.isEmpty()) passengerToEdit.setPassport(newPassport);
+                                case 7: // Hapus Rute Penerbangan
+                                    System.out.println("\n=== Hapus Rute Penerbangan ===");
+                                    System.out.print("Masukkan ID Rute yang ingin dihapus: ");
+                                    String removeRouteId = scanner.nextLine();
+                                    flightRouteService.removeFlightRoute(removeRouteId);
+                                    break;
 
-                            passengerService.updatePassenger(passengerToEdit);
-                            System.out.println("Data Passenger berhasil diperbarui!");
-                        } else {
-                            System.out.println("Penumpang dengan Nomor KTP tersebut tidak ditemukan.");
+                                case 8: // Keluar dari Sistem
+                                    running = false;
+                                    System.out.println("Terima kasih telah menggunakan sistem!");
+                                    break;
+
+                                default:
+                                    System.out.println("Opsi tidak valid. Silakan coba lagi.");
+                            }
                         }
                     }
-                    break;
-
-
-                case 4: // Tambah Rute Penerbangan
-                    System.out.println("\n=== Tambah Rute Penerbangan ===");
-
-                    // Meminta input data rute penerbangan
-                    System.out.print("Masukkan ID Rute: ");
-                    String routeId = scanner.nextLine();
-
-                    System.out.print("Masukkan Kota Keberangkatan: ");
-                    String departure = scanner.nextLine();
-
-                    System.out.print("Masukkan Kota Tujuan: ");
-                    String destination = scanner.nextLine();
-
-                    System.out.print("Masukkan Waktu Keberangkatan (format: HH:mm): ");
-                    String departureTime = scanner.nextLine();
-
-                    // Validasi input (opsional, bisa disesuaikan)
-                    if (routeId.isEmpty() || departure.isEmpty() || destination.isEmpty() || departureTime.isEmpty()) {
-                        System.out.println("Semua data harus diisi. Rute penerbangan tidak dapat ditambahkan.");
-                        break;
-                    }
-
-                    // Membuat objek FlightRoute baru dengan data yang dimasukkan
-                    FlightRoute newRoute = new FlightRoute(routeId, departure, destination, departureTime);
-
-                    // Menambahkan rute ke dalam sistem
-                    flightRouteService.addFlightRoute(newRoute);
-
-                    FlightRoute flightRoute = null ;
-                    System.out.println("Rute penerbangan berhasil ditambahkan: " + flightRoute.getRouteId() );
-                    break;
-
-
-
-                case 5: // Tampilkan Daftar Rute Penerbangan
-                    System.out.println("\n=== Daftar Rute Penerbangan ===");
-
-                    List<FlightRoute> routesToDisplay = flightRouteService.getAllFlightRoutes(); // Ambil semua rute penerbangan
-
-                    if (routesToDisplay.isEmpty()) {
-                        System.out.println("Belum ada rute penerbangan.");
-                    } else {
-                        flightRouteView.displayAllFlightRoutes(routesToDisplay); // Tampilkan daftar rute penerbangan
-                    }
-                    break;
-
-
-
-
-                case 6: // Edit Rute Penerbangan
-                    System.out.println("\n=== Edit Rute Penerbangan ===");
-
-                    // Tampilkan daftar rute penerbangan yang ada
-                    flightRouteView.displayFlightRoutes();  // Menampilkan daftar rute penerbangan
-
-                    // Minta input ID rute yang akan diedit
-                    String editRouteId = flightRouteView.getInputRouteId();  // Input ID rute yang ingin diedit
-
-                    // Cari rute berdasarkan ID yang dimasukkan oleh pengguna
-                    FlightRoute existingRoute = flightRouteService.getAllFlightRoutes().stream()
-                            .filter(r -> r.getRouteId().equals(editRouteId))  // Mencocokkan berdasarkan routeId
-                            .findFirst().orElse(null);  // Jika rute tidak ditemukan, kembalikan null
-
-                    if (existingRoute != null) {
-                        // Jika rute ditemukan, tampilkan informasi rute yang ingin diedit
-                        flightRouteView.displayEditFlightRouteForm(existingRoute);
-
-                        // Ambil data baru untuk update rute
-                        String newDeparture = flightRouteView.getInputDeparture();  // Ambil input keberangkatan baru
-                        String newDestination = flightRouteView.getInputDestination();  // Ambil input tujuan baru
-                        String newDepartureTime = flightRouteView.getInputDepartureTime();  // Ambil input waktu keberangkatan baru
-
-                        // Buat objek FlightRoute baru dengan data yang diubah
-                        FlightRoute updatedRoute = new FlightRoute(editRouteId, newDeparture, newDestination, newDepartureTime);
-
-                        // Perbarui rute yang ada menggunakan service
-                        flightRouteService.editFlightRoute(editRouteId, updatedRoute);
-
-                        // Berikan konfirmasi bahwa rute berhasil diperbarui
-                        System.out.println("Rute penerbangan berhasil diupdate!");
-                    } else {
-                        // Jika rute tidak ditemukan, beri tahu pengguna
-                        System.out.println("Rute penerbangan dengan ID tersebut tidak ditemukan.");
-                    }
-                    break;
-
-                case 7: // Hapus Rute Penerbangan
-                    System.out.println("\n=== Hapus Rute Penerbangan ===");
-
-                    // Menampilkan daftar rute penerbangan untuk mempermudah pemilihan
-                    List<FlightRoute> routesToDelete = flightRouteService.getAllFlightRoutes();
-                    if (routesToDelete.isEmpty()) {
-                        System.out.println("Belum ada rute penerbangan yang tersedia untuk dihapus.");
-                        break;
-                    } else {
-                        System.out.println("ID Rute | Keberangkatan | Tujuan   | Waktu Keberangkatan");
-                        System.out.println("------------------------------------------------------");
-                        for (FlightRoute routes : routesToDelete) {
-                            System.out.printf("%-8s | %-13s | %-8s | %-18s%n",
-                                    routes.getRouteId(),
-                                    routes.getDeparture(),
-                                    routes.getDestination(),
-                                    routes.getDepartureTime());
-                        }
-                    }
-
-                    // Meminta input ID rute yang ingin dihapus
-                    System.out.print("\nMasukkan ID Rute yang ingin dihapus: ");
-                    String deleteRouteId = scanner.nextLine();
-
-                    // Mencari rute berdasarkan ID
-                    FlightRoute routeToDelete = routesToDelete.stream()
-                            .filter(r -> r.getRouteId().equals(deleteRouteId))
-                            .findFirst()
-                            .orElse(null);
-
-                    if (routeToDelete != null) {
-                        // Menghapus rute melalui layanan
-                        flightRouteService.removeFlightRoute(deleteRouteId);
-                        System.out.println("Rute penerbangan dengan ID " + deleteRouteId + " berhasil dihapus!");
-                    } else {
-                        System.out.println("Rute penerbangan dengan ID tersebut tidak ditemukan!");
-                    }
-                    break;
-
-
-                case 8: // Keluar dari Sistem
-                    running = false;
-                    System.out.println("Terima kasih telah menggunakan sistem!");
-                    break;
-
-                default:
-                    System.out.println("Opsi tidak valid. Silakan coba lagi.");
+                }
             }
         }
     }
