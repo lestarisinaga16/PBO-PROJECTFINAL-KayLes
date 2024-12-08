@@ -13,4 +13,11 @@ public interface FlightRouteService {
     List<FlightRoute> getAllFlightRoutes();
 
     FlightRoute[] getFlightRouteList();
+
+    public List<FlightRoute> getAllFlightRoutes() {
+        // Pastikan ini mengembalikan daftar rute penerbangan yang sudah ditambahkan
+        List<FlightRoute> flightRoutes = List.of();
+        return flightRoutes;  // flightRoutes adalah koleksi yang menyimpan data rute penerbangan
+    }
+
 }

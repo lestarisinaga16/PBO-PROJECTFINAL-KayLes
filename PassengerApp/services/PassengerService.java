@@ -15,4 +15,12 @@ public interface PassengerService {
     Boolean removePassenger(Integer id);
 
     Boolean removePassenger(String idCard);
+
+    // Menambahkan metode untuk mengakses penumpang berdasarkan indeks
+    Passenger get(int index);
+
+    // Menambahkan metode untuk mendapatkan jumlah penumpang
+    int size();
+
+    void updatePassenger(Passenger passengerToEdit);
 }

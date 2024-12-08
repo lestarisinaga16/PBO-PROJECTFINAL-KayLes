@@ -8,7 +8,7 @@ public class FlightRoute {
     private String routeId;
 
     // Constructor
-    public FlightRoute(String departureCity, String arrivalCity, String departureTime, String arrivalTime, String routeId) {
+    public FlightRoute(String departureCity, String arrivalCity, String departureTime, String arrivalTime) {
         this.departureCity = departureCity;
         this.arrivalCity = arrivalCity;
         this.departureTime = departureTime;
@@ -55,5 +55,19 @@ public class FlightRoute {
 
     public void setRouteId(String routeId) {
         this.routeId = routeId;
+    }
+
+    public String getDeparture() {
+        return null;
+    }
+
+    public String getDestination() {
+        return null;
+    }
+
+    public void setDestination(String newDestination) {
+    }
+
+    public void setDeparture(String newDeparture) {
     }
 }

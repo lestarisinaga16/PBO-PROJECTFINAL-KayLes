@@ -48,4 +48,6 @@ public interface PassengerView {
     void editPassenger();
 
     void running();
+
+    String getInputBirthDate();
 }

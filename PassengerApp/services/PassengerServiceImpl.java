@@ -1,91 +1,63 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.Passenger;
-import PassengerApp.repositories.PassengerRepository;
-import org.springframework.stereotype.Component;
-
+import PassengerApp.services.PassengerService;
+import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class PassengerServiceImpl implements PassengerService {
-    private final PassengerRepository passengerRepository;
-
-    public PassengerServiceImpl(PassengerRepository passengerRepository) {
-        this.passengerRepository = passengerRepository;
-    }
+    private List<Passenger> passengers = new ArrayList<>();
 
     @Override
-    public void addPassenger(final Passenger passenger) {
-        if (passenger == null || passenger.getName() == null || passenger.getName().isBlank()) {
-            System.out.println("Masukkan data penumpang dengan benar.");
-            return;
-        }
-        passengerRepository.addPassenger(passenger);
+    public void addPassenger(Passenger passenger) {
+        passengers.add(passenger);
     }
 
     @Override
     public void editPassenger(int index, Passenger passenger) {
-        if (passenger == null || passenger.getName() == null || passenger.getName().isBlank()) {
-            System.out.println("Data penumpang tidak valid.");
-            return;
+        if (index >= 0 && index < passengers.size()) {
+            passengers.set(index, passenger);
+        } else {
+            System.out.println("Index tidak valid!");
         }
-
-        List<Passenger> passengers = passengerRepository.getAllPassengers();
-
-        // Validasi apakah index valid
-        if (index < 0 || index >= passengers.size()) {
-            System.out.println("Index tidak valid.");
-            return;
-        }
-
-        // Update data penumpang pada repository
-        passengerRepository.editPassenger(index, passenger);
-        System.out.println("Data penumpang berhasil diperbarui.");
     }
 
     @Override
     public List<Passenger> getAllPassengers() {
-        return passengerRepository.getAllPassengers();
+        return passengers;
     }
 
     @Override
     public Passenger[] getPassengerList() {
-        List<Passenger> passengers = passengerRepository.getAllPassengers();
-        return passengers.toArray(new Passenger[0]); // Konversi List ke Array
+        return passengers.toArray(new Passenger[0]);
     }
-
-
 
     @Override
     public Boolean removePassenger(Integer id) {
-        if (id == null || id < 0) {
-            System.out.println("ID tidak valid.");
-            return false;
-        }
-
-        List<Passenger> passengers = passengerRepository.getAllPassengers();
-
-        // Cari penumpang berdasarkan ID
-        Passenger passengerToRemove = null;
-        for (Passenger passenger : passengers) {
-            if (passenger.getId()) {  // ID dalam bentuk Integer
-                passengerToRemove = passenger;
-                break;
-            }
-        }
-
-        if (passengerToRemove != null) {
-            passengers.remove(passengerToRemove);  // Hapus penumpang
-            System.out.println("Penumpang berhasil dihapus.");
-            return true;
-        } else {
-            System.out.println("Penumpang tidak ditemukan.");
-            return false;
-        }
+        // Tidak ada id dalam class Passenger, kita menggunakan idCard
+        return passengers.removeIf(passenger -> passenger.getIdCard().equals(id.toString()));
     }
 
     @Override
     public Boolean removePassenger(String idCard) {
-        return null;
+        return passengers.removeIf(passenger -> passenger.getIdCard().equals(idCard));
+    }
+
+    @Override
+    public Passenger get(int index) {
+        if (index >= 0 && index < passengers.size()) {
+            return passengers.get(index); // Mengambil penumpang berdasarkan indeks
+        }
+        return null; // Jika indeks tidak valid
+    }
+
+    @Override
+    public int size() {
+        return passengers.size(); // Mengembalikan jumlah penumpang
+    }
+
+    @Override
+    public void updatePassenger(Passenger passengerToEdit) {
+
     }
 }

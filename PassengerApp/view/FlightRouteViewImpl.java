@@ -48,7 +48,8 @@ public class FlightRouteViewImpl {
         System.out.println("Masukkan Waktu Kedatangan: ");
         String arrivalTime = scanner.nextLine();
 
-        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime, routeId);
+        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime);
+        System.out.println("Rute perbangan baru akan di tambahkan: " + flightRoute.getRouteId());
         flightRouteService.addFlightRoute(flightRoute);
     }
 
@@ -66,7 +67,7 @@ public class FlightRouteViewImpl {
         System.out.println("Masukkan Waktu Kedatangan Baru: ");
         String arrivalTime = scanner.nextLine();
 
-        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime, routeId);
+        FlightRoute flightRoute = new FlightRoute(departureCity, arrivalCity, departureTime, arrivalTime);
         flightRouteService.editFlightRoute(routeId, flightRoute);
     }
 
@@ -83,35 +84,58 @@ public class FlightRouteViewImpl {
         boolean running = true;
         while (running) {
             System.out.println("\nMENU RUTE PENERBANGAN:");
-            System.out.println("1. Tambah Rute Penerbangan");
-            System.out.println("2. Tampilkan Daftar Rute Penerbangan");
-            System.out.println("3. Edit Rute Penerbangan");
-            System.out.println("4. Hapus Rute Penerbangan");
-            System.out.println("5. Keluar");
+            System.out.println("1. Tambah Data Passenger");
+            System.out.println("2. Tampilkan Daftar Passenger");
+            System.out.println("3. Edit Passenger");
+            System.out.println("4. Tambah Rute Penerbangan");
+            System.out.println("5. Tampilkan Daftar Rute Penerbangan");
+            System.out.println("6. Edit Rute Penerbangan");
+            System.out.println("7. Hapus Rute Penerbangan");
+            System.out.println("8. Keluar");
 
             System.out.print("Pilih opsi: ");
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    addFlightRoute();
+                    addPassenger();  // Menambahkan data passenger
                     break;
                 case "2":
-                    displayFlightRoutes();
+                    displayPassengerInfo();  // Menampilkan daftar passenger
                     break;
                 case "3":
-                    editFlightRoute();
+                    editPassenger();  // Mengedit data passenger
                     break;
                 case "4":
-                    removeFlightRoute();
+                    addFlightRoute();  // Menambahkan rute penerbangan
                     break;
                 case "5":
-                    System.out.println("Keluar dari aplikasi.");
-                    running = false;  // Keluar dari loop
+                    displayFlightRoutes();  // Menampilkan daftar rute penerbangan
+                    break;
+                case "6":
+                    editFlightRoute();  // Mengedit rute penerbangan
+                    break;
+                case "7":
+                    removeFlightRoute();  // Menghapus rute penerbangan
+                    break;
+                case "8":
+                    System.out.println("Keluar dari aplikasi.");  // Keluar dari aplikasi
+                    running = false;  // Menghentikan loop dan keluar dari aplikasi
                     break;
                 default:
-                    System.out.println("Opsi tidak valid, coba lagi.");
+                    System.out.println("Opsi tidak valid, coba lagi.");  // Menangani input yang tidak valid
             }
+
         }
     }
+
+    private void addPassenger() {
+    }
+
+    private void displayPassengerInfo() {
+    }
+
+    private void editPassenger() {
+    }
+
 }

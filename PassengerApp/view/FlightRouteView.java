@@ -1,50 +1,74 @@
 package PassengerApp.view;
 
 import PassengerApp.entities.FlightRoute;
+import PassengerApp.services.FlightRouteService;
+import PassengerApp.services.FlightRouteServiceImpl;
+
 import java.util.List;
+import java.util.Scanner;
 
-public interface FlightRouteView {
+public abstract class FlightRouteView {
 
-    // Menampilkan pesan atau informasi kepada pengguna
-    void displayMessage(String message);
+    // Membuat objek Scanner di sini
+    private Scanner scanner = new Scanner(System.in);
+    private FlightRouteService flightRouteService = new FlightRouteServiceImpl();
 
-    // Menampilkan daftar rute penerbangan
-    void displayAllFlightRoutes(List<FlightRoute> flightRoutes);
+    public abstract void displayMessage(String message);
 
-    // Menampilkan form untuk menambahkan rute penerbangan
-    void displayAddFlightRouteForm();
+    public void displayAllFlightRoutes(List<FlightRoute> routes) {
+        System.out.println("ID Rute | Keberangkatan | Tujuan | Waktu Keberangkatan");
+        System.out.println("--------------------------------------------");
+        for (FlightRoute route : routes) {
+            System.out.println(route); // Memanggil toString() untuk menampilkan informasi rute
+        }
+    }
 
-    // Menampilkan form untuk mengedit rute penerbangan yang ada
-    void displayEditFlightRouteForm(FlightRoute flightRoute);
+    public void displayAddFlightRouteForm() {
+        // Menampilkan form untuk menambahkan rute penerbangan
+        System.out.println("Masukkan ID Rute:");
+        // Lanjutkan inputan lainnya...
+    }
 
-    // Menampilkan form untuk menghapus rute penerbangan
-    void displayRemoveFlightRouteForm();
+    public abstract void displayRemoveFlightRouteForm();
 
-    // Mengonfirmasi penghapusan rute penerbangan
-    void displayRemoveFlightRouteConfirmation(String routeId);
+    public abstract void displayRemoveFlightRouteConfirmation(String routeId);
 
-    // Mengambil input ID rute penerbangan dari pengguna
-    String getInputRouteId();
+    public String getInputRouteId() {
+        // Mendapatkan input ID Rute dari pengguna
+        return scanner.nextLine();  // Membaca input dari pengguna
+    }
 
-    // Mengambil input asal (departure) rute penerbangan
-    String getInputDeparture();
+    public String getInputDeparture() {
+        // Mendapatkan input Keberangkatan dari pengguna
+        return scanner.nextLine();  // Membaca input dari pengguna
+    }
 
-    // Mengambil input tujuan (destination) rute penerbangan
-    String getInputDestination();
+    public String getInputDestination() {
+        // Mendapatkan input Tujuan dari pengguna
+        return scanner.nextLine();  // Membaca input dari pengguna
+    }
 
-    // Mengambil input waktu keberangkatan (departure time) rute penerbangan
-    String getInputDepartureTime();
+    public String getInputDepartureTime() {
+        // Mendapatkan input Waktu Keberangkatan dari pengguna
+        return scanner.nextLine();  // Membaca input dari pengguna
+    }
 
-    // Menampilkan menu utama atau pilihan-pilihan lain untuk pengelolaan rute penerbangan
-    void displayMainMenu();
+    public abstract void displayMainMenu();
 
-    void addFlightRoute();
+    public abstract void addFlightRoute();
 
-    void displayFlightRoutes();
+    public void displayFlightRoutes() {
+    }
 
-    void editFlightRoute();
+    public void displayEditFlightRouteForm(FlightRoute existingRoute) {
 
-    void removeFlightRoute();
+    }
 
-    void running();
+    public abstract void displayFlightRoute();
+
+    public abstract void editFlightRoute();
+
+    public abstract void removeFlightRoute();
+
+    public abstract void running();
 }

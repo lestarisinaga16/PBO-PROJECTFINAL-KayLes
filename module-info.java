@@ -7,12 +7,7 @@ module PBO.PROJECTFINAL.KayLes16 {
     opens PassengerApp;
     opens PassengerApp.config;
     opens PassengerApp.entities;
-    opens PassengerApp.repository;
-    opens PassengerApp.servise;
+    opens PassengerApp.repositories;
+    opens PassengerApp.services;
     opens PassengerApp.view;
-    opens FlightApp;
-    opens FlightApp.entities;
-    opens FlightApp.repository;
-    opens FlightApp.service;
-    opens FlightApp.view;
 }

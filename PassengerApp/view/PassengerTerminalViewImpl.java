@@ -45,7 +45,9 @@ public class PassengerTerminalViewImpl {
         System.out.println("Masukkan Nomor KTP: ");
         String idCardNumber = scanner.nextLine();
 
+        int umur = 0;
         Passenger passenger = new Passenger(name, age, gender, passportNumber, idCardNumber);
+        System.out.println("Penumpang baru akan ditambahkan: " + passenger.getName());
         passengerService.addPassenger(passenger);
     }
 
@@ -81,26 +83,41 @@ public class PassengerTerminalViewImpl {
     public void run() {
         boolean running = true;
         while (running) {
-            System.out.println("\nMENU:");
-            System.out.println("1. Tambah Data Penumpang");
-            System.out.println("2. Tampilkan Daftar Penumpang");
-            System.out.println("3. Edit Data Penumpang");
-            System.out.println("4. Keluar");
-
+            System.out.println("Menu:");
+            System.out.println("1. Tambah Data Passenger");
+            System.out.println("2. Tampilkan Daftar Passenger");
+            System.out.println("3. Edit Passenger");
+            System.out.println("4. Tambah Rute Penerbangan");
+            System.out.println("5. Tampilkan Daftar Rute Penerbangan");
+            System.out.println("6. Edit Rute Penerbangan");
+            System.out.println("7. Hapus Rute Penerbangan");
+            System.out.println("8. Keluar");
             System.out.print("Pilih opsi: ");
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    addPassenger();
+                    addPassenger();  // Menambahkan passenger
                     break;
                 case "2":
-                    displayPassengerInfo();
+                    displayPassengerInfo();  // Menampilkan daftar passenger
                     break;
                 case "3":
-                    editPassenger();
+                    editPassenger();  // Mengedit data passenger
                     break;
                 case "4":
+                    addRoutePassenger();  // Menambahkan rute penerbangan
+                    break;
+                case "5":
+                    displayFlightRoutes();  // Menampilkan daftar rute penerbangan
+                    break;
+                case "6":
+                    editFlightRoute();  // Mengedit rute penerbangan
+                    break;
+                case "7":
+                    removeFlightRoute();  // Menghapus rute penerbangan
+                    break;
+                case "8":
                     System.out.println("Keluar dari aplikasi.");
                     running = false;  // Keluar dari loop
                     break;
@@ -108,5 +125,17 @@ public class PassengerTerminalViewImpl {
                     System.out.println("Opsi tidak valid, coba lagi.");
             }
         }
+    }
+
+    private void addRoutePassenger() {
+    }
+
+    private void displayFlightRoutes() {
+    }
+
+    private void editFlightRoute() {
+    }
+
+    private void removeFlightRoute() {
     }
 }
