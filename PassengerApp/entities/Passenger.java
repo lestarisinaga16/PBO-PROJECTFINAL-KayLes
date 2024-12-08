@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Passenger {
     private String name;
-    private int age;
+    private String age;
     private String gender;
     private String passport;
     private String idCard;
 
     // Constructor
-    public Passenger(String name, int age, String gender, String passport, String idCard) {
+    public Passenger(String name, String age, String gender, String passport, String idCard) {
         this.name = name;
         this.age = age;
         this.gender = gender;
