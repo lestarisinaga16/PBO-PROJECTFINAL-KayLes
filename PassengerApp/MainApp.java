@@ -595,15 +595,11 @@ public class MainApp {
                     // Menambahkan rute ke dalam sistem
                     flightRouteService.addFlightRoute(newRoute);
 
-                    System.out.println("Rute penerbangan berhasil ditambahkan!");
+                    FlightRoute flightRoute = null ;
+                    System.out.println("Rute penerbangan berhasil ditambahkan: " + flightRoute.getRouteId() );
                     break;
 
 
-
-
-                // Membuat objek FlightRoute baru dengan data yang dimasukkan
-
-                // Menambahkan rute ke dalam sistem
 
                 case 5: // Tampilkan Daftar Rute Penerbangan
                     System.out.println("\n=== Daftar Rute Penerbangan ===");

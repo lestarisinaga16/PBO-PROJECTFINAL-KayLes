@@ -40,10 +40,21 @@ public class PassengerTerminalViewImpl {
         // Implementasi code untuk menambahkan penumpang
     }
 
+    //menampilkan penumpanh
+    public void displayPassenger(){
+
+    }
+
     // Mengedit penumpang
     public void editPassenger() {
         // Implementasi code untuk mengedit penumpang
     }
+
+    // Menambahkan rute penerbangan
+    public void addFlightRoute() {
+        // Implementasi code untuk menambahkan rute penerbangan
+    }
+
 
     // Menampilkan daftar rute penerbangan
     public void displayFlightRoutes() {
@@ -58,10 +69,6 @@ public class PassengerTerminalViewImpl {
         }
     }
 
-    // Menambahkan rute penerbangan
-    public void addFlightRoute() {
-        // Implementasi code untuk menambahkan rute penerbangan
-    }
 
     // Mengedit rute penerbangan
     public void editFlightRoute() {
