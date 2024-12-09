@@ -474,7 +474,7 @@ public class MainApp {
                 while (running) {
                     passengerView.displayMainMenu(); // Menampilkan menu utama
                     System.out.print("Pilih opsi: ");
-                    int option = 0;
+
 
                     try {
                         option = Integer.parseInt(scanner.nextLine()); // Menghindari kesalahan input
@@ -509,7 +509,7 @@ public class MainApp {
                             passengerView.displayAllPassengers(passengerService.getAllPassengers());
                             System.out.print("Masukkan indeks passenger yang ingin diubah: ");
                             try {
-                                int index = Integer.parseInt(scanner.nextLine());
+                                index = Integer.parseInt(scanner.nextLine());
                                 // Validasi dan proses lebih lanjut
                             } catch (NumberFormatException e) {
                                 System.out.println("Input tidak valid. Harap masukkan angka.");
