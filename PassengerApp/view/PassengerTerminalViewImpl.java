@@ -40,11 +40,6 @@ public class PassengerTerminalViewImpl {
         // Implementasi code untuk menambahkan penumpang
     }
 
-    //menampilkan penumpanh
-    public void displayPassenger(){
-
-    }
-
     // Mengedit penumpang
     public void editPassenger() {
         // Implementasi code untuk mengedit penumpang

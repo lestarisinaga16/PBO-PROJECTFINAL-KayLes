@@ -10,8 +10,6 @@ public interface FlightRouteService {
 
     void removeFlightRoute(String routeId);
 
-    FlightRoute[] getFlightRouteList();
-
     public default List<FlightRoute> getAllFlightRoutes() {
         // Pastikan ini mengembalikan daftar rute penerbangan yang sudah ditambahkan
         List<FlightRoute> flightRoutes = List.of();
