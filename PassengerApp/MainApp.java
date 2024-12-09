@@ -485,12 +485,12 @@ public class MainApp {
                             System.out.print("ID Card: ");
                             String idCard = scanner.nextLine();
                             passengerService.addPassenger(new Passenger(name, age, gender, passport, idCard));
-                            break;
+                            continue;
 
                         case 2: // Tampilkan Daftar Passenger
                             System.out.println("\n=== Daftar Data Passenger ===");
                             passengerView.displayAllPassengers(passengerService.getAllPassengers());
-                            break;
+                            continue;
 
                         case 3: // Edit Passenger
                             System.out.println("\n=== Edit Data Passenger ===");
@@ -513,7 +513,7 @@ public class MainApp {
                             System.out.print("ID Card Baru: ");
                             String newIdCard = scanner.nextLine();
                             passengerService.editPassenger(index, new Passenger(newName, newAge, newGender, newPassport, newIdCard));
-                            break;
+                            continue;
 
                         case 4: // Tambah Rute Penerbangan
                             System.out.println("\n=== Tambah Rute Penerbangan ===");
@@ -526,12 +526,12 @@ public class MainApp {
                             System.out.print("Waktu Keberangkatan: ");
                             String departureTime = scanner.nextLine();
                             flightRouteService.addFlightRoute(new FlightRoute(routeId, departure, destination, departureTime));
-                            break;
+                            continue;
 
                         case 5: // Tampilkan Daftar Rute Penerbangan
                             System.out.println("\n=== Daftar Rute Penerbangan ===");
                             flightRouteView.displayFlightRoutes();
-                            break;
+                            continue;
 
                         case 6: // Edit Rute Penerbangan
                             System.out.println("\n=== Edit Rute Penerbangan ===");
@@ -544,14 +544,14 @@ public class MainApp {
                             System.out.print("Waktu Keberangkatan Baru: ");
                             String newDepartureTime = scanner.nextLine();
                             flightRouteService.editFlightRoute(editRouteId, new FlightRoute(editRouteId, newDeparture, newDestination, newDepartureTime));
-                            break;
+                            continue;
 
                         case 7: // Hapus Rute Penerbangan
                             System.out.println("\n=== Hapus Rute Penerbangan ===");
                             System.out.print("Masukkan ID Rute yang ingin dihapus: ");
                             String removeRouteId = scanner.nextLine();
                             flightRouteService.removeFlightRoute(removeRouteId);
-                            break;
+                            continue;
 
                         case 8: // Keluar dari Sistem
                             running = false;
