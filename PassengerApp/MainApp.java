@@ -1,13 +1,10 @@
 package PassengerApp;
 
-import PassengerApp.config.Database;
 import PassengerApp.entities.FlightRoute;
 import PassengerApp.entities.Passenger;
 import PassengerApp.services.FlightRouteService;
 import PassengerApp.services.PassengerService;
 import org.springframework.context.annotation.ComponentScan;
-import PassengerApp.repositories.PassengerRepositoryImpl;
-import PassengerApp.repositories.FlightRouteRepositoryImpl;
 import PassengerApp.view.PassengerView;
 import PassengerApp.view.FlightRouteView;
 
@@ -19,12 +16,6 @@ import java.util.Scanner;
 public class MainApp {
     public static void main(String[] args) {
         int index = 0;
-        // Initialize the database connection
-        Database database = new Database(); // This will automatically connect to the database
-
-        // Initialize repositories and services
-        PassengerRepositoryImpl passengerRepository = new PassengerRepositoryImpl();
-        FlightRouteRepositoryImpl flightRouteRepository = new FlightRouteRepositoryImpl();
 
         class Application {
             public static void main(String[] args) {
@@ -142,7 +133,6 @@ public class MainApp {
                 };
 
                 // Misalnya menambah rute penerbangan melalui menu
-                String arrivalTime = "";
                 flightRouteService.addFlightRoute(new FlightRoute("1", "Medan", "Jakarta", "10:00"));
                 flightRouteService.addFlightRoute(new FlightRoute("2", "Manado", "Jakarta", "14:00"));
 

@@ -6,7 +6,7 @@ import PassengerApp.services.FlightRouteService;
 import java.util.List;
 import java.util.Scanner;
 
-public class FlightRouteViewImpl {
+public class FlightRouteViewImpl{
     private final FlightRouteService flightRouteService;
     private final Scanner scanner;
 
