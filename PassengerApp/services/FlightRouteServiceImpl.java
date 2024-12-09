@@ -3,46 +3,42 @@ package PassengerApp.services;
 import PassengerApp.entities.FlightRoute;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class FlightRouteServiceImpl implements FlightRouteService {
-
-    // List untuk menyimpan data rute penerbangan
-    private List<FlightRoute> flightRoutes = new ArrayList<>();
+    // Gunakan koleksi untuk menyimpan daftar rute penerbangan
+    private final List<FlightRoute> flightRoutes = new ArrayList<>();
 
     @Override
     public void addFlightRoute(FlightRoute flightRoute) {
         flightRoutes.add(flightRoute);
+        System.out.println("Rute penerbangan berhasil ditambahkan: " + flightRoute.getRouteId());
     }
 
     @Override
     public void editFlightRoute(String routeId, FlightRoute updatedRoute) {
-        // Mencari rute berdasarkan routeId
-        Optional<FlightRoute> existingRouteOpt = flightRoutes.stream()
-                .filter(route -> route.getRouteId().equals(routeId))
-                .findFirst();
-
-        if (existingRouteOpt.isPresent()) {
-            FlightRoute existingRoute = existingRouteOpt.get();
-            existingRoute.setDeparture(updatedRoute.getDeparture());
-            existingRoute.setDestination(updatedRoute.getDestination());
-            existingRoute.setDepartureTime(updatedRoute.getDepartureTime());
+        for (int i = 0; i < flightRoutes.size(); i++) {
+            if (flightRoutes.get(i).getRouteId().equals(routeId)) {
+                flightRoutes.set(i, updatedRoute);
+                System.out.println("Rute penerbangan berhasil diperbarui: " + routeId);
+                return;
+            }
         }
+        System.out.println("Rute penerbangan dengan ID " + routeId + " tidak ditemukan.");
     }
 
     @Override
     public void removeFlightRoute(String routeId) {
-        // Mencari rute berdasarkan routeId dan menghapusnya
         flightRoutes.removeIf(route -> route.getRouteId().equals(routeId));
-    }
-
-    @Override
-    public List<FlightRoute> getAllFlightRoutes() {
-        return new ArrayList<>(flightRoutes);  // Mengembalikan salinan daftar rute penerbangan
+        System.out.println("Rute penerbangan berhasil dihapus: " + routeId);
     }
 
     @Override
     public FlightRoute[] getFlightRouteList() {
-        return flightRoutes.toArray(new FlightRoute[0]); // Mengembalikan array dari daftar rute
+        return flightRoutes.toArray(new FlightRoute[0]);
+    }
+
+    @Override
+    public List<FlightRoute> getAllFlightRoutes() {
+        return new ArrayList<>(flightRoutes); // Mengembalikan salinan daftar untuk keamanan
     }
 }

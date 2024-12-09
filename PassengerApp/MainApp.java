@@ -133,8 +133,10 @@ public class MainApp {
                 };
 
                 // Misalnya menambah rute penerbangan melalui menu
-                flightRouteService.addFlightRoute(new FlightRoute("1", "Medan", "Jakarta", "10:00"));
-                flightRouteService.addFlightRoute(new FlightRoute("2", "Manado", "Jakarta", "14:00"));
+                flightRouteService.addFlightRoute(new FlightRoute("Medan", "jakarta", "12.00", "14:00"));
+                flightRouteService.addFlightRoute(new FlightRoute("Manado", "Jakarta", "08.00", "11:00"));
+
+
 
                 // Menampilkan daftar rute penerbangan
                 flightRouteView.displayAllFlightRoutes(flightRouteService.getAllFlightRoutes());
@@ -309,8 +311,8 @@ public class MainApp {
                 System.out.println("1. Tambah Data Passenger");
                 System.out.println("2. Tampilkan Daftar Passenger");
                 System.out.println("3. Edit Passenger");
-                System.out.println("4. Tambah Rute Penerbangan");
-                System.out.println("5. Tampilkan Daftar Rute Penerbangan");
+                System.out.println("4. Tampilkan Daftar Rute Penerbangan");
+                System.out.println("5. Tambah Rute Penerbangan");
                 System.out.println("6. Edit Rute Penerbangan");
                 System.out.println("7. Hapus Rute Penerbangan");
                 System.out.println("8. Keluar");
@@ -412,8 +414,8 @@ public class MainApp {
                 System.out.println("1. Tambah Data Passenger");
                 System.out.println("2. Tampilkan Daftar Passenger");
                 System.out.println("3. Edit Passenger");
-                System.out.println("4. Tambah Rute Penerbangan");
-                System.out.println("5. Tampilkan Daftar Rute Penerbangan");
+                System.out.println("4. Tampilkan Daftar  Rute Penerbangan");
+                System.out.println("5. Tambah Rute Penerbangan");
                 System.out.println("6. Edit Rute Penerbangan");
                 System.out.println("7. Hapus Rute Penerbangan");
                 System.out.println("8. Keluar");
@@ -505,7 +507,13 @@ public class MainApp {
                     passengerService.editPassenger(index, new Passenger(newName, newAge, newGender, newPassport, newIdCard));
                     continue;
 
-                case 4: // Tambah Rute Penerbangan
+                case 4:// Tampilkan Daftar Rute Penerbangan
+                    System.out.println("\n=== Daftar Rute Penerbangan ===");
+                    flightRouteView.displayFlightRoutes();
+                    continue;
+
+                case 5:
+
                     System.out.println("\n=== Tambah Rute Penerbangan ===");
                     System.out.print("ID Rute: ");
                     String routeId = scanner.nextLine();
@@ -518,10 +526,6 @@ public class MainApp {
                     flightRouteService.addFlightRoute(new FlightRoute(routeId, departure, destination, departureTime));
                     continue;
 
-                case 5: // Tampilkan Daftar Rute Penerbangan
-                    System.out.println("\n=== Daftar Rute Penerbangan ===");
-                    flightRouteView.displayFlightRoutes();
-                    continue;
 
                 case 6: // Edit Rute Penerbangan
                     System.out.println("\n=== Edit Rute Penerbangan ===");

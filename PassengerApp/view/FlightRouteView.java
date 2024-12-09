@@ -12,15 +12,21 @@ public interface FlightRouteView {
     Scanner scanner = new Scanner(System.in);
     FlightRouteService flightRouteService = new FlightRouteServiceImpl();
 
-    public default void displayMessage(String message) {
+    // Menampilkan pesan kepada pengguna
+    default void displayMessage(String message) {
         System.out.println(message);
     }
 
-    public default void displayAllFlightRoutes(List<FlightRoute> routes) {
-        System.out.println("ID Rute | Keberangkatan | Tujuan | Waktu Keberangkatan");
-        System.out.println("--------------------------------------------");
+    // Menampilkan daftar semua rute penerbangan
+    default void displayAllFlightRoutes(List<FlightRoute> routes) {
+        if (routes.isEmpty()) {
+            System.out.println("Belum ada rute penerbangan yang ditambahkan.");
+            return;
+        }
+        System.out.println("ID Rute | Keberangkatan  | Tujuan       | Waktu Keberangkatan");
+        System.out.println("------------------------------------------------------------");
         for (FlightRoute route : routes) {
-            System.out.printf("%-8s | %-13s | %-8s | %-18s%n",
+            System.out.printf("%-8s | %-14s | %-12s | %-20s%n",
                     route.getRouteId(),
                     route.getDeparture(),
                     route.getDestination(),
@@ -28,40 +34,36 @@ public interface FlightRouteView {
         }
     }
 
-    public default void displayAddFlightRouteForm() {
+    // Form untuk menambahkan rute penerbangan
+    default void displayAddFlightRouteForm() {
         System.out.println("=== Tambah Rute Penerbangan ===");
+        String routeId = getInputRouteId();
+        String departure = getInputDeparture();
+        String destination = getInputDestination();
+        String departureTime = getInputDepartureTime();
+
+        FlightRoute newRoute = new FlightRoute(routeId, departure, destination, departureTime);
+        flightRouteService.addFlightRoute(newRoute);
+        displayMessage("Rute penerbangan berhasil ditambahkan!");
     }
 
-
-    public default void displayRemoveFlightRouteForm() {
+    // Form untuk menghapus rute penerbangan
+    default void displayRemoveFlightRouteForm() {
         System.out.println("=== Hapus Rute Penerbangan ===");
+        String routeId = getInputRouteId();
+
+        // Hapus rute dari service
+        flightRouteService.removeFlightRoute(routeId);
+        displayRemoveFlightRouteConfirmation(routeId);
     }
 
-    public default void displayRemoveFlightRouteConfirmation(String routeId) {
-        System.out.println("Rute penerbangan dengan ID " + routeId + " telah dihapus.");
+    // Konfirmasi penghapusan rute
+    default void displayRemoveFlightRouteConfirmation(String routeId) {
+        displayMessage("Rute penerbangan dengan ID " + routeId + " telah dihapus.");
     }
 
-    public default String getInputRouteId() {
-        System.out.print("Masukkan ID Rute: ");
-        return scanner.nextLine();
-    }
-
-    public default String getInputDeparture() {
-        System.out.print("Masukkan Kota Keberangkatan: ");
-        return scanner.nextLine();
-    }
-
-    public default String getInputDestination() {
-        System.out.print("Masukkan Kota Tujuan: ");
-        return scanner.nextLine();
-    }
-
-    public default String getInputDepartureTime() {
-        System.out.print("Masukkan Waktu Keberangkatan (format: HH:mm): ");
-        return scanner.nextLine();
-    }
-
-    public default void displayMainMenu() {
+    // Menampilkan menu utama
+    default void displayMainMenu() {
         System.out.println("Menu:");
         System.out.println("1. Tambah Data Passenger");
         System.out.println("2. Tampilkan Daftar Passenger");
@@ -73,23 +75,21 @@ public interface FlightRouteView {
         System.out.println("8. Keluar");
     }
 
-    public default void addFlightRoute() {
+    // Menambahkan rute penerbangan
+    default void addFlightRoute() {
         displayAddFlightRouteForm();
-        String routeId = getInputRouteId();
-        String departure = getInputDeparture();
-        String destination = getInputDestination();
-        String departureTime = getInputDepartureTime();
-
-        FlightRoute newRoute = new FlightRoute(routeId, departure, destination, departureTime);
-        flightRouteService.addFlightRoute(newRoute);
-        System.out.println("Rute penerbangan berhasil ditambahkan!");
     }
 
-    public abstract void displayFlightRoutes();
+    // Menampilkan daftar rute penerbangan
+    default void displayFlightRoutes() {
+        List<FlightRoute> routes = flightRouteService.getAllFlightRoutes();
+        displayAllFlightRoutes(routes);
+    }
 
     void displayFlightRoute();
 
-    public default void editFlightRoute() {
+    // Mengedit rute penerbangan
+    default void editFlightRoute() {
         System.out.println("=== Edit Rute Penerbangan ===");
         String routeId = getInputRouteId();
         FlightRoute existingRoute = flightRouteService.getAllFlightRoutes().stream()
@@ -103,7 +103,12 @@ public interface FlightRouteView {
             String newDestination = getInputDestination();
             String newDepartureTime = getInputDepartureTime();
 
-            FlightRoute updatedRoute = new FlightRoute(routeId, newDeparture, newDestination, newDepartureTime);
+            // Jika input kosong, gunakan nilai lama
+            String updatedDeparture = newDeparture.isEmpty() ? existingRoute.getDeparture() : newDeparture;
+            String updatedDestination = newDestination.isEmpty() ? existingRoute.getDestination() : newDestination;
+            String updatedDepartureTime = newDepartureTime.isEmpty() ? existingRoute.getDepartureTime() : newDepartureTime;
+
+            FlightRoute updatedRoute = new FlightRoute(routeId, updatedDeparture, updatedDestination, updatedDepartureTime);
             flightRouteService.editFlightRoute(routeId, updatedRoute);
             System.out.println("Rute penerbangan berhasil diperbarui!");
         } else {
@@ -111,7 +116,8 @@ public interface FlightRouteView {
         }
     }
 
-    public default void displayEditFlightRouteForm(FlightRoute existingRoute) {
+    // Form untuk mengedit rute penerbangan
+    default void displayEditFlightRouteForm(FlightRoute existingRoute) {
         System.out.println("ID Rute: " + existingRoute.getRouteId());
         System.out.println("Keberangkatan: " + existingRoute.getDeparture());
         System.out.println("Tujuan: " + existingRoute.getDestination());
@@ -119,11 +125,36 @@ public interface FlightRouteView {
         System.out.println("Masukkan data baru (kosongkan jika tidak ingin mengubah):");
     }
 
-    public default void removeFlightRoute() {
+    // Menghapus rute penerbangan
+    default void removeFlightRoute() {
         displayRemoveFlightRouteForm();
-        String getInput = "";
-        String routeId = getInput;
     }
 
-    public abstract void running();
+    // Input untuk ID rute
+    default String getInputRouteId() {
+        System.out.print("Masukkan ID Rute: ");
+        return scanner.nextLine().trim();
+    }
+
+    // Input untuk kota keberangkatan
+    default String getInputDeparture() {
+        System.out.print("Masukkan Kota Keberangkatan: ");
+        return scanner.nextLine().trim();
+    }
+
+    // Input untuk kota tujuan
+    default String getInputDestination() {
+        System.out.print("Masukkan Kota Tujuan: ");
+        return scanner.nextLine().trim();
+    }
+
+    // Input untuk waktu keberangkatan
+    default String getInputDepartureTime() {
+        System.out.print("Masukkan Waktu Keberangkatan (format: HH:mm): ");
+        return scanner.nextLine().trim();
+    }
+
+
+    // Metode abstrak untuk implementasi menu utama
+    void running();
 }
