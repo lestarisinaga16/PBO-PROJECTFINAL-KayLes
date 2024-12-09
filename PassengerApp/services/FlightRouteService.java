@@ -16,4 +16,5 @@ public interface FlightRouteService {
         return flightRoutes;  // flightRoutes adalah koleksi yang menyimpan data rute penerbangan
     }
 
+    FlightRoute[] getFlightRouteList();
 }
