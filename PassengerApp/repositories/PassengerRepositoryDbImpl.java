@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class PassengerRepositoryDbImpl implements PassengerRepository{
+public class PassengerRepositoryDbImpl implements PassengerRepository {
     private Database database;
 
     public PassengerRepositoryDbImpl(Database database) {
@@ -30,8 +30,8 @@ public class PassengerRepositoryDbImpl implements PassengerRepository{
             PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Passenger penumpang = new Passenger(resultSet.getString("name"),resultSet.getString("age"),
-                        resultSet.getString("gender"),resultSet.getString("passport_number"),resultSet.getString("ktp_number"));
+                Passenger penumpang = new Passenger(resultSet.getString("name"), resultSet.getString("age"),
+                        resultSet.getString("gender"), resultSet.getString("passport_number"), resultSet.getString("ktp_number"));
 
                 penumpang.setFlightRouteID(resultSet.getInt("flight_route_id"));
 
@@ -80,6 +80,7 @@ public class PassengerRepositoryDbImpl implements PassengerRepository{
             }
         }
     }
+
     @Override
     public void delete(Passenger passenger) {
         // Pastikan koneksi diambil dari kelas Database

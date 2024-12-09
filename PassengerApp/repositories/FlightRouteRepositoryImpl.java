@@ -31,8 +31,8 @@ public class FlightRouteRepositoryImpl implements FlightRouteRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                FlightRoute flightRoute = new FlightRoute(resultSet.getString("departure_city"),resultSet.getString("arrival_city"),
-                        resultSet.getString("departure_time"),resultSet.getString("arrival_time"),resultSet.getInt("route_id"));
+                FlightRoute flightRoute = new FlightRoute(resultSet.getString("departure_city"), resultSet.getString("arrival_city"),
+                        resultSet.getString("departure_time"), resultSet.getString("arrival_time"), resultSet.getInt("route_id"));
 
                 flightRoutes.add(flightRoute);
             }
@@ -115,7 +115,6 @@ public class FlightRouteRepositoryImpl implements FlightRouteRepository {
         // Pastikan koneksi diambil dari kelas Database
 
 
-
         Connection connection = null;
         try {
             connection = database.getConnection(); // Asumsi ada method getConnection() pada class Database
@@ -124,7 +123,7 @@ public class FlightRouteRepositoryImpl implements FlightRouteRepository {
             PreparedStatement statement = connection.prepareStatement(query);
 
             // Mengisi preparedStatement dengan data dari objek passenger
-            statement.setString(1,flightRoute.getDepartureCity());
+            statement.setString(1, flightRoute.getDepartureCity());
             statement.setString(2, flightRoute.getArrivalCity());
             statement.setString(3, flightRoute.getDepartureTime());
             statement.setString(4, flightRoute.getArrivalTime());
