@@ -495,7 +495,6 @@ public class MainApp {
                             System.out.println("\n=== Edit Data Passenger ===");
                             passengerView.displayAllPassengers(passengerService.getAllPassengers());
                             System.out.print("Masukkan indeks passenger yang ingin diubah: ");
-                            int index;
                             try {
                                 index = Integer.parseInt(scanner.nextLine());
                                 // Validasi dan proses lebih lanjut
