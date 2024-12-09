@@ -470,19 +470,6 @@ public class MainApp {
                 continue;
             }
 
-            switch (option) {
-                while (running) {
-                    passengerView.displayMainMenu(); // Menampilkan menu utama
-                    System.out.print("Pilih opsi: ");
-
-
-                    try {
-                        option = Integer.parseInt(scanner.nextLine()); // Menghindari kesalahan input
-                    } catch (NumberFormatException e) {
-                        System.out.println("Harap masukkan angka yang valid!");
-                        continue;
-                    }
-
                     switch (option) {
                         case 1: // Tambah Data Passenger
                             System.out.println("\n=== Tambah Data Passenger ===");
@@ -508,6 +495,7 @@ public class MainApp {
                             System.out.println("\n=== Edit Data Passenger ===");
                             passengerView.displayAllPassengers(passengerService.getAllPassengers());
                             System.out.print("Masukkan indeks passenger yang ingin diubah: ");
+                            int index;
                             try {
                                 index = Integer.parseInt(scanner.nextLine());
                                 // Validasi dan proses lebih lanjut
@@ -577,5 +565,3 @@ public class MainApp {
                 }
             }
         }
-    }
-}
