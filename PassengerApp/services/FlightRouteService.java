@@ -1,6 +1,8 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.FlightRoute;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public interface FlightRouteService {
@@ -12,9 +14,11 @@ public interface FlightRouteService {
 
     public default List<FlightRoute> getAllFlightRoutes() {
         // Pastikan ini mengembalikan daftar rute penerbangan yang sudah ditambahkan
-        List<FlightRoute> flightRoutes = List.of();
+        List<FlightRoute> flightRoutes = new ArrayList<>();
         return flightRoutes;  // flightRoutes adalah koleksi yang menyimpan data rute penerbangan
     }
+
+//    List<FlightRoute> getAllFlightRoutes();
 
     FlightRoute[] getFlightRouteList();
 }
