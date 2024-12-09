@@ -530,7 +530,17 @@ public class MainApp {
 
                         case 5: // Tampilkan Daftar Rute Penerbangan
                             System.out.println("\n=== Daftar Rute Penerbangan ===");
-                            flightRouteView.displayFlightRoutes();
+                            List<FlightRoute> flightRoutes = flightRouteService.getAllFlightRoutes();
+                            if (flightRoutes.isEmpty()) {
+                                System.out.println("Belum ada rute penerbangan.");
+                            } else {
+                                System.out.println("ID Rute | Keberangkatan | Tujuan | Waktu Keberangkatan");
+                                System.out.println("--------------------------------------------");
+                                for (FlightRoute route : flightRoutes) {
+                                    System.out.println(route.getRouteId() + " | " + route.getDeparture() + " | " +
+                                            route.getDestination() + " | " + route.getDepartureTime());
+                                }
+                            }
                             break;
 
                         case 6: // Edit Rute Penerbangan
