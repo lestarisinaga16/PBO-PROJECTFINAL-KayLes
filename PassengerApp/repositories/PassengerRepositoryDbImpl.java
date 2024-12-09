@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class PassengerRepositoryDbImpl {
-    Database database;
+public class PassengerRepositoryDbImpl implements PassengerRepository{
+    private Database database;
 
     public PassengerRepositoryDbImpl(Database database) {
         this.database = database;
     }
 
+    @Override
     public List<Passenger> getAll() {
         Connection connection = database.getConnection();
         String sqlStatement = "SELECT * FROM passengers";
@@ -44,7 +45,7 @@ public class PassengerRepositoryDbImpl {
     }
 
 
-
+    @Override
     public void addPassenger(Passenger passenger) {
         // Pastikan koneksi diambil dari kelas Database
         Connection connection = null;
@@ -79,7 +80,7 @@ public class PassengerRepositoryDbImpl {
             }
         }
     }
-
+    @Override
     public void delete(Passenger passenger) {
         // Pastikan koneksi diambil dari kelas Database
         Connection connection = null;
@@ -111,6 +112,7 @@ public class PassengerRepositoryDbImpl {
         }
     }
 
+    @Override
     public void edit(Passenger passenger, String oldIDCard) {
         // Pastikan koneksi diambil dari kelas Database
 

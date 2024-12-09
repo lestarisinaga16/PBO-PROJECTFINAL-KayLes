@@ -3,11 +3,14 @@ package PassengerApp.services;
 import PassengerApp.entities.FlightRoute;
 import PassengerApp.entities.Passenger;
 import PassengerApp.repositories.FlightRouteRepositoryImpl;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class FlightRouteServiceImpl implements FlightRouteService {
     private FlightRouteRepositoryImpl flightRouteRepository;
     private Scanner input = new Scanner(System.in);

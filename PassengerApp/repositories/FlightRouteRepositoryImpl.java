@@ -2,7 +2,7 @@ package PassengerApp.repositories;
 
 import PassengerApp.config.Database;
 import PassengerApp.entities.FlightRoute;
-import PassengerApp.entities.Passenger;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,11 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class FlightRouteRepositoryImpl implements FlightRouteRepository {
 
-
-
-    Database database;
+    private Database database;
 
     public FlightRouteRepositoryImpl(Database database) {
         this.database = database;

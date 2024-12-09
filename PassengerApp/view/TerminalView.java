@@ -4,13 +4,15 @@ import PassengerApp.entities.FlightRoute;
 import PassengerApp.entities.Passenger;
 import PassengerApp.services.FlightRouteServiceImpl;
 import PassengerApp.services.PassengerServiceImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class TerminalView implements Menu{
-    FlightRouteServiceImpl flightRouteService;
-    PassengerServiceImpl passengerService;
+    private FlightRouteServiceImpl flightRouteService;
+    private PassengerServiceImpl passengerService;
 
     public TerminalView(FlightRouteServiceImpl flightRouteService, PassengerServiceImpl passengerService) {
         this.flightRouteService = flightRouteService;

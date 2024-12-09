@@ -1,13 +1,15 @@
 package PassengerApp.services;
 
-import PassengerApp.entities.FlightRoute;
+
 import PassengerApp.entities.Passenger;
 import PassengerApp.repositories.PassengerRepositoryDbImpl;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class PassengerServiceImpl implements PassengerService {
     private PassengerRepositoryDbImpl passengerRepositoryDb;
     private Scanner input = new Scanner(System.in);

@@ -10,9 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @ComponentScan(basePackages = "PassengerApp")
-public class MainApp {
+public class Main {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(MainApp.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
         Menu terminalView = context.getBean(TerminalView.class);
         terminalView.run();
     }

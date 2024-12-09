@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface PassengerRepository {
     void addPassenger(Passenger passenger);
-    void editPassenger(int index, Passenger passenger);
-    List<Passenger> getAllPassengers();
+    void delete(Passenger passenger);
+    void edit(Passenger passenger, String oldIDCard);
+    List<Passenger> getAll();
 }
