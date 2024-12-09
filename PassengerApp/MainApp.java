@@ -530,7 +530,7 @@ public class MainApp {
 
                         case 5: // Tampilkan Daftar Rute Penerbangan
                             System.out.println("\n=== Daftar Rute Penerbangan ===");
-                            flightRouteView.displayFlightRoute();
+                            flightRouteView.displayFlightRoutes();
                             break;
 
                         case 6: // Edit Rute Penerbangan

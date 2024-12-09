@@ -32,7 +32,6 @@ public interface FlightRouteView {
         System.out.println("=== Tambah Rute Penerbangan ===");
     }
 
-    public abstract void displayFlightRoute();
 
     public default void displayRemoveFlightRouteForm() {
         System.out.println("=== Hapus Rute Penerbangan ===");
@@ -87,6 +86,8 @@ public interface FlightRouteView {
     }
 
     public abstract void displayFlightRoutes();
+
+    void displayFlightRoute();
 
     public default void editFlightRoute() {
         System.out.println("=== Edit Rute Penerbangan ===");
