@@ -1,73 +1,75 @@
 package PassengerApp.entities;
 
-public class FlightRoute {
-    private String departureCity;
-    private String arrivalCity;
-    private String departureTime;
-    private String arrivalTime;
-    private String routeId;
+import java.util.List;
+
+public class Passenger {
+    private String name;
+    private String age;
+    private String gender;
+    private String passport;
+    private int flightRouteID;
+    private String idCard;
 
     // Constructor
-    public FlightRoute(String departureCity, String arrivalCity, String departureTime, String arrivalTime) {
-        this.departureCity = departureCity;
-        this.arrivalCity = arrivalCity;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
-        this.routeId = routeId;
+    public Passenger(String name, String age, String gender, String passport, String idCard) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.passport = passport;
+        this.idCard = idCard;
     }
 
-    // Getters and Setters
-    public String getDepartureCity() {
-        return departureCity;
+    public int getFlightRouteID() {
+        return flightRouteID;
     }
 
-    public void setDepartureCity(String departureCity) {
-        this.departureCity = departureCity;
+    public void setFlightRouteID(int flightRouteID) {
+        this.flightRouteID = flightRouteID;
     }
 
-    public String getArrivalCity() {
-        return arrivalCity;
+    // Getters dan Setters
+    public String getName() {
+        return name;
     }
 
-    public void setArrivalCity(String arrivalCity) {
-        this.arrivalCity = arrivalCity;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDepartureTime() {
-        return departureTime;
+    public String getAge() {
+        return age;
     }
 
-    public void setDepartureTime(String departureTime) {
-        this.departureTime = departureTime;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public String getArrivalTime() {
-        return arrivalTime;
+    public String getGender() {
+        return gender;
     }
 
-    public void setArrivalTime(String arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getRouteId() {
-        return routeId;
+    public String getPassport() {
+        return passport;
     }
 
-    public void setRouteId(String routeId) {
-        this.routeId = routeId;
+    public void setPassport(String passport) {
+        this.passport = passport;
     }
 
-    public String getDeparture() {
-        return null;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public String getDestination() {
-        return null;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
-    public void setDestination(String newDestination) {
-    }
 
-    public void setDeparture(String newDeparture) {
+    public void setBirthDate(String newBirthDate) {
+
     }
 }

@@ -1,24 +1,15 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.FlightRoute;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public interface FlightRouteService {
-    void addFlightRoute(FlightRoute flightRoute);
+    void addFlightRoute();
 
-    void editFlightRoute(String routeId, FlightRoute flightRoute);
+    void editFlightRoute();
 
-    void removeFlightRoute(String routeId);
+    void removeFlightRoute();
 
-    public default List<FlightRoute> getAllFlightRoutes() {
-        // Pastikan ini mengembalikan daftar rute penerbangan yang sudah ditambahkan
-        List<FlightRoute> flightRoutes = new ArrayList<>();
-        return flightRoutes;  // flightRoutes adalah koleksi yang menyimpan data rute penerbangan
-    }
+    List<FlightRoute> getAllFlightRoutes();
 
-//    List<FlightRoute> getAllFlightRoutes();
-
-    FlightRoute[] getFlightRouteList();
 }

@@ -4,8 +4,8 @@ import PassengerApp.entities.FlightRoute;
 import java.util.List;
 
 public interface FlightRouteRepository {
-    void addFlightRoute(FlightRoute flightRoute);
-    void editFlightRoute(String routeId, FlightRoute flightRoute);
-    void removeFlightRoute(String routeId);
-    List<FlightRoute> getAllFlightRoutes();
+    void addRoute(FlightRoute flightRoute);
+    void edit(FlightRoute flightRoute);
+    void delete(FlightRoute flightRoute);
+    List<FlightRoute> getAll();
 }

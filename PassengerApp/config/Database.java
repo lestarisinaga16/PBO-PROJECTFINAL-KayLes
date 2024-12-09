@@ -5,44 +5,35 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static final String URL = "jdbc:mysql://localhost:3306/databasekeyles";  // Sesuaikan nama database Anda
-    private static final String USER = "root";  // Username default di XAMPP adalah root
-    private static final String PASSWORD = "";  // Biasanya kosong di XAMPP
-    private static Connection connection;
+    private final String dbName;
+    private final String userName;
+    private final String password;
+    private final String host;
+    private final String port;
+    private Connection connection;
 
-    public Database(String databasekeyles, String root, String s, String localhost, String number) {
+
+    public Database(String dbName, String userName, String password, String host, String port) {
+        this.dbName = dbName;
+        this.userName = userName;
+        this.password = password;
+        this.host = host;
+        this.port = port;
     }
 
-    public Database() {
-
-    }
-
-    public static Connection getConnection() {
+    public Connection getConnection() {
         return connection;
     }
 
     public void setup() {
+        String mysqlConnUrlTemplate = "jdbc:mysql://%s:%s/%s";
         try {
-            // Memastikan driver JDBC yang benar digunakan
-            Class.forName("com.mysql.cj.jdbc.Driver");  // Gunakan Driver untuk versi terbaru MySQL
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(String.format(mysqlConnUrlTemplate, host, port, dbName), userName, password);
             System.out.println("Database connected!");
-        } catch (SQLException e) {
-            System.err.println("SQLException: " + e.getMessage());
-            e.printStackTrace();  // Tampilkan stack trace error untuk debugging
-        } catch (ClassNotFoundException e) {
-            System.err.println("JDBC Driver tidak ditemukan: " + e.getMessage());
-        }
-    }
 
-    public void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println("Database connection closed.");
-            } catch (SQLException e) {
-                System.err.println("Error closing connection: " + e.getMessage());
-            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

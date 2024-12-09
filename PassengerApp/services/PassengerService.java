@@ -1,26 +1,17 @@
 package PassengerApp.services;
 
+import PassengerApp.entities.FlightRoute;
 import PassengerApp.entities.Passenger;
 import java.util.List;
 
 public interface PassengerService {
-    void addPassenger(Passenger passenger);
-
-    void editPassenger(int index, Passenger passenger);
+    void addPassenger(int flightRouteID);
 
     List<Passenger> getAllPassengers();
 
-    Passenger[] getPassengerList();
+    void editPassenger(int flightRouteID);
 
-    int removePassenger(Integer id);
+    void removePassenger();
 
-    Boolean removePassenger(String idCard);
 
-    // Menambahkan metode untuk mengakses penumpang berdasarkan indeks
-    int get(int index);
-
-    // Menambahkan metode untuk mendapatkan jumlah penumpang
-    int size();
-
-    void updatePassenger(Passenger passengerToEdit);
 }

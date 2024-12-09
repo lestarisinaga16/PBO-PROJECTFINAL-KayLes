@@ -1,107 +1,68 @@
-package PassengerApp.entities;
-
-import java.util.List;
+package entities;
 
 public class Passenger {
-    private String name;
-    private String age;
-    private String gender;
-    private String passport;
-    private String idCard;
+    private String nama;
+    private String umur;
+    private String jenisKelamin;
+    private String tanggalLahir;
+    private String nomorPaspor;
+    private String nomorKTP;
 
-    // Constructor
-    public Passenger(String name, String age, String gender, String passport, String idCard) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.passport = passport;
-        this.idCard = idCard;
+    public Passenger(String nama, String umur, String jenisKelamin, String tanggalLahir, String nomorPaspor, String nomorKTP) {
+        this.nama = nama;
+        this.umur = umur;
+        this.jenisKelamin = jenisKelamin;
+        this.tanggalLahir = tanggalLahir;
+        this.nomorPaspor = nomorPaspor;
+        this.nomorKTP = nomorKTP;
     }
 
-    // Metode indexOf untuk mencari indeks penumpang dalam daftar
-    public static int indexOf(List<Passenger> allPassengers, Passenger existingPassenger) {
-        for (int i = 0; i < allPassengers.size(); i++) { // Menggunakan size() dari List
-            if (allPassengers.get(i).equals(existingPassenger)) { // Menggunakan get() dari List
-                return i;
-            }
-        }
-        return -1; // Jika tidak ditemukan, kembalikan -1
+    // Getter dan Setter
+    public String getNama() {
+        return nama;
     }
 
-    // Getters dan Setters
-    public String getName() {
-        return name;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUmur() {
+        return umur;
     }
 
-    public String getAge() {
-        return age;
+    public void setUmur(String umur) {
+        this.umur = umur;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public String getJenisKelamin() {
+        return jenisKelamin;
     }
 
-    public String getGender() {
-        return gender;
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getTanggalLahir() {
+        return tanggalLahir;
     }
 
-    public String getPassport() {
-        return passport;
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
-    public void setPassport(String passport) {
-        this.passport = passport;
+    public String getNomorPaspor() {
+        return nomorPaspor;
     }
 
-    public String getIdCard() {
-        return idCard;
+    public void setNomorPaspor(String nomorPaspor) {
+        this.nomorPaspor = nomorPaspor;
     }
 
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
+    public String getNomorKTP() {
+        return nomorKTP;
     }
 
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "name='" + name + '\'' +
-                ", age='" + age + '\'' +
-                ", gender='" + gender + '\'' +
-                ", passport='" + passport + '\'' +
-                ", idCard='" + idCard + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Passenger passenger = (Passenger) obj;
-        return idCard.equals(passenger.idCard); // Bandingkan berdasarkan idCard
-    }
-
-    // Main method untuk pengujian
-    public static void main(String[] args) {
-        List<Passenger> passengers = List.of(
-                new Passenger("Alice", "25", "Female", "P12345", "ID001"),
-                new Passenger("Bob", "30", "Male", "P54321", "ID002")
-        );
-
-        Passenger searchPassenger = new Passenger("Bob", "30", "Male", "P54321", "ID002");
-
-        int index = indexOf(passengers, searchPassenger);
-        System.out.println("Indeks: " + index); // Output: Indeks: 1
-    }
-
-    public void setBirthDate(String newBirthDate) {
-
+    public void setNomorKTP(String nomorKTP) {
+        this.nomorKTP = nomorKTP;
     }
 }

@@ -1,44 +1,87 @@
 package PassengerApp.services;
 
 import PassengerApp.entities.FlightRoute;
+import PassengerApp.entities.Passenger;
+import PassengerApp.repositories.FlightRouteRepositoryImpl;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class FlightRouteServiceImpl implements FlightRouteService {
-    // Gunakan koleksi untuk menyimpan daftar rute penerbangan
-    private final List<FlightRoute> flightRoutes = new ArrayList<>();
+    private FlightRouteRepositoryImpl flightRouteRepository;
+    private Scanner input = new Scanner(System.in);
 
-    @Override
-    public void addFlightRoute(FlightRoute flightRoute) {
-        flightRoutes.add(flightRoute);
-        System.out.println("Rute penerbangan berhasil ditambahkan: " + flightRoute.getRouteId());
+
+    public FlightRouteServiceImpl(FlightRouteRepositoryImpl flightRouteRepository) {
+        this.flightRouteRepository = flightRouteRepository;
     }
 
     @Override
-    public void editFlightRoute(String routeId, FlightRoute updatedRoute) {
-        for (int i = 0; i < flightRoutes.size(); i++) {
-            if (flightRoutes.get(i).getRouteId().equals(routeId)) {
-                flightRoutes.set(i, updatedRoute);
-                System.out.println("Rute penerbangan berhasil diperbarui: " + routeId);
-                return;
-            }
+    public void addFlightRoute() {
+
+        System.out.print("Masukan Kota Keberangkatan : ");
+        String departureCity = input.nextLine();
+        System.out.print("Masukan Kota Tujuan : ");
+        String arrivalCity = input.nextLine();
+        System.out.print("Masukan Tanggal Keberangkatan : ");
+        String departureTime = input.nextLine();
+        System.out.print("Masukan Tanggal Sampai : ");
+        String arrivalTime = input.nextLine();
+
+
+
+
+        FlightRoute flightRoute = new FlightRoute(departureCity,arrivalCity,departureTime,arrivalTime,0);
+        flightRouteRepository.addRoute(flightRoute);
+    }
+
+    @Override
+    public void editFlightRoute() {
+
+
+        System.out.print("Masukan Kota Keberangkatan : ");
+        String oldDepartureCity = input.nextLine();
+        System.out.print("Masukan Tanggal Keberangkatan : ");
+        String oldDepartureTime = input.nextLine();
+
+        int routeID = findFlightRoute(oldDepartureCity,oldDepartureTime).getRouteId();
+
+        System.out.print("Masukan Kota Keberangkatan Baru : ");
+        String departureCity = input.nextLine();
+        System.out.print("Masukan Kota Tujuan Baru : ");
+        String arrivalCity = input.nextLine();
+        System.out.print("Masukan Tanggal Keberangkatan Baru : ");
+        String departureTime = input.nextLine();
+        System.out.print("Masukan Tanggal Sampai Baru : ");
+        String arrivalTime = input.nextLine();
+
+
+
+        FlightRoute flightRoute = new FlightRoute(departureCity,arrivalCity,departureTime,arrivalTime,routeID);
+        flightRouteRepository.edit(flightRoute);
+    }
+
+    private FlightRoute findFlightRoute(String departureCity, String departureTime){
+        List<FlightRoute> flightRouteList = getAllFlightRoutes();
+        for (FlightRoute i : flightRouteList){
+            if (i.getDepartureCity().equals(departureCity) && i.getDepartureCity().equals(departureTime))return i;
         }
-        System.out.println("Rute penerbangan dengan ID " + routeId + " tidak ditemukan.");
+        return new FlightRoute(null,null,null,null,0);
     }
 
     @Override
-    public void removeFlightRoute(String routeId) {
-        flightRoutes.removeIf(route -> route.getRouteId().equals(routeId));
-        System.out.println("Rute penerbangan berhasil dihapus: " + routeId);
-    }
-
-    @Override
-    public FlightRoute[] getFlightRouteList() {
-        return flightRoutes.toArray(new FlightRoute[0]);
+    public void removeFlightRoute() {
+        System.out.print("Masukan Kota Keberangkatan : ");
+        String oldDepartureCity = input.nextLine();
+        System.out.print("Masukan Tanggal Keberangkatan : ");
+        String oldDepartureTime = input.nextLine();
+        flightRouteRepository.delete(findFlightRoute(oldDepartureCity,oldDepartureTime));
     }
 
     @Override
     public List<FlightRoute> getAllFlightRoutes() {
-        return new ArrayList<>(flightRoutes); // Mengembalikan salinan daftar untuk keamanan
+        return flightRouteRepository.getAll();
     }
+
 }
