@@ -17,7 +17,8 @@ import java.util.Scanner;
 
 @ComponentScan(basePackages = "PassengerApp")
 public class MainApp {
-    public static void main(String[] args, int index) {
+    public static void main(String[] args) {
+        int index = 0;
         // Initialize the database connection
         Database database = new Database(); // This will automatically connect to the database
 
