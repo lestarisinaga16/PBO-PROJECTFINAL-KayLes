@@ -8,7 +8,7 @@ import PassengerApp.services.PassengerServiceImpl;
 import java.util.List;
 import java.util.Scanner;
 
-public class TerminalView {
+public class TerminalView implements Menu{
     FlightRouteServiceImpl flightRouteService;
     PassengerServiceImpl passengerService;
 

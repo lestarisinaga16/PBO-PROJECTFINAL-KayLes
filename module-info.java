@@ -3,7 +3,6 @@ module PBO.PROJECTFINAL.KayLes16 {
     requires spring.beans;
     requires java.sql;
     requires org.slf4j;
-    requires jdk.compiler;
 
     opens PassengerApp;
     opens PassengerApp.config;

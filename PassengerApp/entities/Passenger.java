@@ -1,68 +1,75 @@
-package entities;
+package PassengerApp.entities;
+
+import java.util.List;
 
 public class Passenger {
-    private String nama;
-    private String umur;
-    private String jenisKelamin;
-    private String tanggalLahir;
-    private String nomorPaspor;
-    private String nomorKTP;
+    private String name;
+    private String age;
+    private String gender;
+    private String passport;
+    private int flightRouteID;
+    private String idCard;
 
-    public Passenger(String nama, String umur, String jenisKelamin, String tanggalLahir, String nomorPaspor, String nomorKTP) {
-        this.nama = nama;
-        this.umur = umur;
-        this.jenisKelamin = jenisKelamin;
-        this.tanggalLahir = tanggalLahir;
-        this.nomorPaspor = nomorPaspor;
-        this.nomorKTP = nomorKTP;
+    // Constructor
+    public Passenger(String name, String age, String gender, String passport, String idCard) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.passport = passport;
+        this.idCard = idCard;
     }
 
-    // Getter dan Setter
-    public String getNama() {
-        return nama;
+    public int getFlightRouteID() {
+        return flightRouteID;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setFlightRouteID(int flightRouteID) {
+        this.flightRouteID = flightRouteID;
     }
 
-    public String getUmur() {
-        return umur;
+    // Getters dan Setters
+    public String getName() {
+        return name;
     }
 
-    public void setUmur(String umur) {
-        this.umur = umur;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getJenisKelamin() {
-        return jenisKelamin;
+    public String getAge() {
+        return age;
     }
 
-    public void setJenisKelamin(String jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public String getTanggalLahir() {
-        return tanggalLahir;
+    public String getGender() {
+        return gender;
     }
 
-    public void setTanggalLahir(String tanggalLahir) {
-        this.tanggalLahir = tanggalLahir;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getNomorPaspor() {
-        return nomorPaspor;
+    public String getPassport() {
+        return passport;
     }
 
-    public void setNomorPaspor(String nomorPaspor) {
-        this.nomorPaspor = nomorPaspor;
+    public void setPassport(String passport) {
+        this.passport = passport;
     }
 
-    public String getNomorKTP() {
-        return nomorKTP;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setNomorKTP(String nomorKTP) {
-        this.nomorKTP = nomorKTP;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+
+    public void setBirthDate(String newBirthDate) {
+
     }
 }
